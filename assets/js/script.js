@@ -20,14 +20,27 @@ document.addEventListener("DOMContentLoaded", function() {
 
 });
 
-addEventListener("keydown", function(event) {
-    if (event.key === "Enter") {
-        incrementScore();
-    } else {
-        incrementWrongScore()
-    }
 
-})
+// global variable to hold the position of each character and increment its value.
+let k = 0;
+
+addEventListener("keydown", function(event) {
+    let keyElements = document.getElementsByClassName("characters");
+
+    if (k < keyElements.length){
+        if (event.key === keyValue(k)) {
+            incrementScore();
+            k++;      
+        } else {
+            incrementWrongScore();
+            k++;
+        }
+    } else {
+         
+    }
+    
+    runGame(gameType);
+});
 
   
   /**
@@ -102,31 +115,27 @@ function populateContent(gameType) {
         gameContent.appendChild(gameItem);
         gameItem.classList.add("characters")
     }
-  
-    gameContent.appendChild(node);
 }
   
 
-function keyCounter(){
-    // scan through gameType array and get value
-    while ( l < gameResult.length){
-        l++
-    }
+function keyValue(k){
+    // get the key value from each span in game area and define it as k
+    let keyElements = document.getElementsByClassName("characters");
+    return keyElements[k].innerHTML;
 }
-
-  //document.getElementsByClassName("game-area").addEventListener("keydown", function(event) {
-  //    if (event.key === ) {
-  //        checkAnswer();
-  //    }
-  //})
 
 function incrementScore() {
     let oldScore = parseInt(document.getElementById("score").innerText);
     document.getElementById("score").innerText = ++oldScore;
+    let keyElements = document.getElementsByClassName("characters");
+    keyElements[k].style.backgroundColor = "#ccffd9"
+
 }
 
 function incrementWrongScore() {
     let oldScore = parseInt(document.getElementById("incorrect").innerText);
     document.getElementById("incorrect").innerText = ++oldScore;
+    let keyElements = document.getElementsByClassName("characters");
+    keyElements[k].style.backgroundColor = "#ffcccc"
 
 }

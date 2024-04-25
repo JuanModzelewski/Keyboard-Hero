@@ -1,60 +1,75 @@
-// Wait for the DOM to finish loading before running the game
-// Get the button elements and add event listeners to them
+// global variable to hold the position of each character and increment its value.
+var keyIndex = 0;
+let gameIndex = "";
+
+/**
+* Wait for the DOM to finish loading before running the game
+* Get the button elements and add event listeners to them
+* Identify active button and update class when clicked.
+*/
 
 document.addEventListener("DOMContentLoaded", function() {
     let buttons = document.getElementsByTagName("button");
   
     for (let button of buttons) {
         button.addEventListener("click", function() {
+
+            keyIndex = 0;
+
+            let currentGame = document.getElementsByClassName("active");
+            currentGame[0].className = currentGame[0].className.replace(" active", "");
+            this.className += " active";
+            this.blur(); // removes focus from button so that when space is pressed button is not activated
+
+
             if (this.getAttribute("data-type") === "reset") {
-                document.getElementsByClassName("game-area")[0].innerHTML = "";
-                document.getElementById("incorrect").innerText = "0";
-                document.getElementById("score").innerText = "0";
-                keyIndex = 0;
                 alert(`Please select a difficulty level`);
+                clearScore()
+                document.getElementsByClassName("game-area")[0].innerHTML = "";
+                keyIndex = 0;
+                this.blur(); // removes focus from button so that when space is pressed button is not activated
             } else {
                 let gameType = this.getAttribute("data-type");
-                keyIndex = 0;
                 runGame(gameType);
-  
-            }
+                clearScore()
+                keyIndex = 0;
+                this.blur(); // removes focus from button so that when space is pressed button is not activated
+                }              
         });
     }
+
+   
+
+    /**
+    * Starts the game by clearing the div element with class "game-area"
+    * When gameType is selected the corresponding characters from game difficulty are populated into the div
+    */
+    document.addEventListener("keydown", function(event) {
+        let keyElements = document.getElementsByClassName("characters");
+    
+        if (keyIndex < keyElements.length){
+            if (event.key === keyValue(keyIndex)) {
+                incrementScore();
+                keyIndex++;      
+            } else {
+                incrementWrongScore();
+                keyIndex++;
+            }
+    
+            keyElements[keyIndex].style.borderColor = "#0000ff"
+    
+        } else if (keyIndex === keyElements.length){
+            document.getElementsByClassName("game-area")[0].innerHTML = "";
+            runGame(gameIndex);
+            keyIndex = 0;
+        } 
+    });
 
     runGame("easy");
 });
 
 
-// global variable to hold the position of each character and increment its value.
-var keyIndex = 0;
-var gameIndex = "a";
 
-addEventListener("keydown", function(event) {
-    let keyElements = document.getElementsByClassName("characters");
-
-    if (keyIndex < keyElements.length){
-        if (event.key === keyValue(keyIndex)) {
-            incrementScore();
-            keyIndex++;      
-        } else {
-            incrementWrongScore();
-            keyIndex++;
-        }
-    } else if (keyIndex === keyElements.length){
-        document.getElementsByClassName("game-area")[0].innerHTML = "";
-        runGame(gameIndex);
-        keyIndex = 0;
-    }
-    
-    
-});
-
-  
-  /**
-  * Starts the game by clearing the div element with class "game-area"
-  * When gameType is selected the corresponding characters from game difficulty are populated into the div
-  */
-  
 function runGame(gameType) {
 
     document.getElementsByClassName("game-area")[0].innerHTML = "";
@@ -106,7 +121,7 @@ function gameDifficulty(gameType) {
         throw `Unknown game type: ${gameType}. Aborting!`;
     }
     
-    gameResult = gameResult.match(/.{1,5}/g).join(" ").split(''); // Creates a string every 5 characters and joins them with a space, then splits each character,
+    gameResult = gameResult.match(/.{1,5}/g).join(" ").split(''); // Creates a string every 5 characters and joins them with a space, then splits each character into an array.
     return gameResult;
 }
   
@@ -115,7 +130,6 @@ function gameDifficulty(gameType) {
   *  
   */
 function populateContent(gameType) {
-  
     let gameContent = document.getElementsByClassName("game-area")[0];
     let gameResult = gameDifficulty(gameType);
   
@@ -135,10 +149,11 @@ function keyValue(keyIndex){
 }
 
 function incrementScore() {
-    let oldScore = parseInt(document.getElementById("score").innerText);
-    document.getElementById("score").innerText = ++oldScore;
+    let oldScore = parseInt(document.getElementById("correct").innerText);
+    document.getElementById("correct").innerText = ++oldScore;
     let keyElements = document.getElementsByClassName("characters");
     keyElements[keyIndex].style.backgroundColor = "#ccffd9"
+    keyElements[keyIndex].style.borderColor = "#2eb82e"
 
 }
 
@@ -147,5 +162,11 @@ function incrementWrongScore() {
     document.getElementById("incorrect").innerText = ++oldScore;
     let keyElements = document.getElementsByClassName("characters");
     keyElements[keyIndex].style.backgroundColor = "#ffcccc"
+    keyElements[keyIndex].style.borderColor = "#ff1a1a"
 
+}
+
+function clearScore() {
+    document.getElementById("incorrect").innerText = "0";
+    document.getElementById("correct").innerText = "0";
 }

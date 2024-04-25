@@ -21,8 +21,13 @@
 
     </div>
 
-    <div>
-        <button data-type="easy" class="btn">
+    <div class="score-area">
+        <p class="scores">Correct :<span id="correct">0</span></p>
+        <p class="scores">Incorrect :<span id="incorrect">0</span></p>
+    </div>
+
+    <div class="button-container">
+        <button data-type="easy" class="btn active">
             Easy
         </button>
         <button data-type="medium" class="btn">
@@ -34,11 +39,6 @@
         <button data-type="reset" class="btn">
             Reset
         </button>
-    </div>
-
-    <div class="score-area">
-        <p class="scores">Correct :<span id="score">0</span></p>
-        <p class="scores">Incorrect :<span id="incorrect">0</span></p>
     </div>
     
     <script src="assets/js/script.js"></script>

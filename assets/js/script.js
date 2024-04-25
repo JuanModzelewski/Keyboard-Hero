@@ -8,8 +8,13 @@ document.addEventListener("DOMContentLoaded", function() {
         button.addEventListener("click", function() {
             if (this.getAttribute("data-type") === "reset") {
                 document.getElementsByClassName("game-area")[0].innerHTML = "";
+                document.getElementById("incorrect").innerText = "0";
+                document.getElementById("score").innerText = "0";
+                keyIndex = 0;
+                alert(`Please select a difficulty level`);
             } else {
                 let gameType = this.getAttribute("data-type");
+                keyIndex = 0;
                 runGame(gameType);
   
             }
@@ -17,29 +22,31 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 
     runGame("easy");
-
 });
 
 
 // global variable to hold the position of each character and increment its value.
-let k = 0;
+var keyIndex = 0;
+var gameIndex = "a";
 
 addEventListener("keydown", function(event) {
     let keyElements = document.getElementsByClassName("characters");
 
-    if (k < keyElements.length){
-        if (event.key === keyValue(k)) {
+    if (keyIndex < keyElements.length){
+        if (event.key === keyValue(keyIndex)) {
             incrementScore();
-            k++;      
+            keyIndex++;      
         } else {
             incrementWrongScore();
-            k++;
+            keyIndex++;
         }
-    } else {
-         
+    } else if (keyIndex === keyElements.length){
+        document.getElementsByClassName("game-area")[0].innerHTML = "";
+        runGame(gameIndex);
+        keyIndex = 0;
     }
     
-    runGame(gameType);
+    
 });
 
   
@@ -49,17 +56,20 @@ addEventListener("keydown", function(event) {
   */
   
 function runGame(gameType) {
-  
+
     document.getElementsByClassName("game-area")[0].innerHTML = "";
   
     gameDifficulty(gameType);
   
     if (gameType === "easy") {
         populateContent(gameType);
+        gameIndex = "easy";
     } else if (gameType === "medium") {
         populateContent(gameType);
+        gameIndex = "medium";
     } else if (gameType === "hard") {
         populateContent(gameType);
+        gameIndex = "hard";
     } else {
         alert(`Unknown game type: ${gameType}`);
         throw `Unknown game type: ${gameType}. Aborting!`;
@@ -118,17 +128,17 @@ function populateContent(gameType) {
 }
   
 
-function keyValue(k){
+function keyValue(keyIndex){
     // get the key value from each span in game area and define it as k
     let keyElements = document.getElementsByClassName("characters");
-    return keyElements[k].innerHTML;
+    return keyElements[keyIndex].innerHTML;
 }
 
 function incrementScore() {
     let oldScore = parseInt(document.getElementById("score").innerText);
     document.getElementById("score").innerText = ++oldScore;
     let keyElements = document.getElementsByClassName("characters");
-    keyElements[k].style.backgroundColor = "#ccffd9"
+    keyElements[keyIndex].style.backgroundColor = "#ccffd9"
 
 }
 
@@ -136,6 +146,6 @@ function incrementWrongScore() {
     let oldScore = parseInt(document.getElementById("incorrect").innerText);
     document.getElementById("incorrect").innerText = ++oldScore;
     let keyElements = document.getElementsByClassName("characters");
-    keyElements[k].style.backgroundColor = "#ffcccc"
+    keyElements[keyIndex].style.backgroundColor = "#ffcccc"
 
 }

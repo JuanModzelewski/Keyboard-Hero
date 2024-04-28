@@ -56,7 +56,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 keyIndex++;
             }
     
-            keyElements[keyIndex].style.borderColor = "#0000ff"
+            keyElements[keyIndex].style.borderColor = "#0000ff";
     
         } else if (keyIndex === keyElements.length){
             document.getElementsByClassName("game-area")[0].innerHTML = "";

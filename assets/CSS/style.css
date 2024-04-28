@@ -15,8 +15,8 @@ body {
 }
 
 .logo {
-    height: 40px;
-    padding-right: 5px;
+    width: 55%;
+    margin: auto;
 }
 
 /* --------- Game layout */

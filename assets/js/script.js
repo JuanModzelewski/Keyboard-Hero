@@ -1,13 +1,16 @@
 // global variable to hold the position of each character and increment its value.
-var keyIndex = 0;
+let keyIndex = 0;
 let gameIndex = "";
+
+let min = 0;
+let sec = 0;
+
 
 /**
 * Wait for the DOM to finish loading before running the game
 * Get the button elements and add event listeners to them
 * Identify active button and update class when clicked.
 */
-
 document.addEventListener("DOMContentLoaded", function() {
     let buttons = document.getElementsByTagName("button");
   
@@ -27,6 +30,8 @@ document.addEventListener("DOMContentLoaded", function() {
                 clearScore()
                 document.getElementsByClassName("game-area")[0].innerHTML = "";
                 keyIndex = 0;
+                min = 0;
+                sec = 0;
                 this.blur(); // removes focus from button so that when space is pressed button is not activated
             } else {
                 let gameType = this.getAttribute("data-type");
@@ -38,19 +43,19 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     }
 
-   
-
     /**
     * Starts the game by clearing the div element with class "game-area"
     * When gameType is selected the corresponding characters from game difficulty are populated into the div
     */
     document.addEventListener("keydown", function(event) {
+
         let keyElements = document.getElementsByClassName("characters");
     
         if (keyIndex < keyElements.length){
+            
             if (event.key === keyValue(keyIndex)) {
                 incrementScore();
-                keyIndex++;      
+                keyIndex++;
             } else {
                 incrementWrongScore();
                 keyIndex++;
@@ -61,16 +66,32 @@ document.addEventListener("DOMContentLoaded", function() {
         } else if (keyIndex === keyElements.length){
             document.getElementsByClassName("game-area")[0].innerHTML = "";
             runGame(gameIndex);
-            keyIndex = 0;
-        } 
+            timer = false;
+        }
+
+    });
+
+    /** 
+     * Starts gameTimer function when key Index = 1 and sets timer to true
+     * If timer = false the gameTImer will stop
+     * */ 
+    document.addEventListener("keydown", function() {
+
+        if (keyIndex === 1){
+            timer = true;
+            gameTimer();
+        }
+            
     });
 
     runGame("easy");
+
 });
 
 
-
 function runGame(gameType) {
+
+    keyIndex = 0;
 
     document.getElementsByClassName("game-area")[0].innerHTML = "";
   
@@ -139,11 +160,12 @@ function populateContent(gameType) {
         gameContent.appendChild(gameItem);
         gameItem.classList.add("characters")
     }
+
 }
   
 
 function keyValue(keyIndex){
-    // get the key value from each span in game area and define it as k
+    // get the key index from each span in game area and presents it value
     let keyElements = document.getElementsByClassName("characters");
     return keyElements[keyIndex].innerHTML;
 }
@@ -170,3 +192,34 @@ function clearScore() {
     document.getElementById("incorrect").innerText = "0";
     document.getElementById("correct").innerText = "0";
 }
+ 
+
+/* function to start stopwatch */
+function gameTimer() {
+    if (timer) { 
+        sec++; 
+  
+        if (sec == 60) { 
+            min++; 
+            sec = 0; 
+        } 
+  
+        let minString = min; 
+        let secString = sec; 
+  
+        if (min < 10) { 
+            minString = "0" + minString; 
+        } 
+  
+        if (sec < 10) { 
+            secString = "0" + secString; 
+        } 
+  
+        document.getElementById('min').innerHTML = minString; 
+        document.getElementById('sec').innerHTML = secString; 
+
+        setTimeout(gameTimer, 1000); 
+    } 
+}
+
+

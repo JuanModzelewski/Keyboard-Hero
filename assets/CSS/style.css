@@ -1,11 +1,17 @@
 /* --------- Global style */
 
 body {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
     background-color: white;
     font-family: "Raleway", sans-serif;
     color: #445361;
     text-align: center;
-}
+    align-content: center;
+
+    }
+
 
 /* --------- Heading */
 
@@ -20,6 +26,16 @@ body {
 }
 
 /* --------- Game layout */
+
+.timer-area {
+    text-align: right;
+    width: 85%;
+    max-width: 830px;
+    margin: auto;
+    font-size: 1.5rem;
+    padding: 1rem;
+}
+
 
 .game-area {
     display: flex;
@@ -50,6 +66,16 @@ body {
     border-bottom: 0.15rem solid rgb(148, 148, 148);
     border-radius: 0.5rem;
     align-content: center;
+}
+
+.timer-area {
+    text-align: right;
+    width: 85%;
+    max-width: 830px;
+    margin: auto;
+    font-size: 1.5rem;
+    padding: 1rem;
+
 }
 
 .score-area {

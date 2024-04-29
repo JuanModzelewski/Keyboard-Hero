@@ -1,10 +1,13 @@
 // global variable to hold the position of each character and increment its value.
+let scoreModal = document.getElementById("game-score-modal");
+let closeModal = document.getElementsByClassName("close")[0];
+
+
 let keyIndex = 0;
 let gameIndex = "";
 
 let min = 0;
 let sec = 0;
-
 
 /**
 * Wait for the DOM to finish loading before running the game
@@ -12,34 +15,36 @@ let sec = 0;
 * Identify active button and update class when clicked.
 */
 document.addEventListener("DOMContentLoaded", function() {
+    
     let buttons = document.getElementsByTagName("button");
+    let currentGame = document.getElementsByClassName("active");
   
     for (let button of buttons) {
         button.addEventListener("click", function() {
 
             keyIndex = 0;
 
-            let currentGame = document.getElementsByClassName("active");
-            currentGame[0].className = currentGame[0].className.replace(" active", "");
-            this.className += " active";
+
             this.blur(); // removes focus from button so that when space is pressed button is not activated
 
 
-            if (this.getAttribute("data-type") === "reset") {
-                alert(`Please select a difficulty level`);
-                clearScore()
-                document.getElementsByClassName("game-area")[0].innerHTML = "";
-                keyIndex = 0;
-                min = 0;
-                sec = 0;
+            if (this.getAttribute("data-type") === "restart") {
+                clearScore();
+                resetGame();
+                runGame(gameIndex);
+                scoreModal.style.display = "none";
                 this.blur(); // removes focus from button so that when space is pressed button is not activated
             } else {
+                currentGame[0].className = currentGame[0].className.replace(" active", "");
+                this.className += " active";
+
                 let gameType = this.getAttribute("data-type");
                 runGame(gameType);
                 clearScore()
                 keyIndex = 0;
                 this.blur(); // removes focus from button so that when space is pressed button is not activated
-                }              
+                } 
+            
         });
     }
 
@@ -49,7 +54,7 @@ document.addEventListener("DOMContentLoaded", function() {
     */
     document.addEventListener("keydown", function(event) {
 
-        let keyElements = document.getElementsByClassName("characters");
+        let keyElements = document.getElementsByClassName("characters");    
     
         if (keyIndex < keyElements.length){
             
@@ -64,10 +69,16 @@ document.addEventListener("DOMContentLoaded", function() {
             keyElements[keyIndex].style.borderColor = "#0000ff";
     
         } else if (keyIndex === keyElements.length){
-            document.getElementsByClassName("game-area")[0].innerHTML = "";
-            runGame(gameIndex);
             timer = false;
+            scoreModal.style.display = "block";
+            //document.getElementsByClassName("game-area")[0].innerHTML = "";
+            //runGame(gameIndex);
         }
+    });
+
+    document.addEventListener("onclick", function() {
+
+
 
     });
 
@@ -81,7 +92,6 @@ document.addEventListener("DOMContentLoaded", function() {
             timer = true;
             gameTimer();
         }
-            
     });
 
     runGame("easy");
@@ -112,6 +122,7 @@ function runGame(gameType) {
     }
   }
   
+
   /**
   * Create a random string of letters from the easy characters provided
   * Separates the string ever 5th character and joins with a space
@@ -160,7 +171,6 @@ function populateContent(gameType) {
         gameContent.appendChild(gameItem);
         gameItem.classList.add("characters")
     }
-
 }
   
 
@@ -170,27 +180,46 @@ function keyValue(keyIndex){
     return keyElements[keyIndex].innerHTML;
 }
 
+
 function incrementScore() {
     let oldScore = parseInt(document.getElementById("correct").innerText);
     document.getElementById("correct").innerText = ++oldScore;
+
+    document.getElementById("modal-correct").innerText = ++oldScore - 1;
+    
     let keyElements = document.getElementsByClassName("characters");
+    
     keyElements[keyIndex].style.backgroundColor = "#ccffd9"
     keyElements[keyIndex].style.borderColor = "#2eb82e"
-
 }
+
 
 function incrementWrongScore() {
     let oldScore = parseInt(document.getElementById("incorrect").innerText);
     document.getElementById("incorrect").innerText = ++oldScore;
+
+    document.getElementById("modal-incorrect").innerText = ++oldScore - 1;
+
     let keyElements = document.getElementsByClassName("characters");
+
     keyElements[keyIndex].style.backgroundColor = "#ffcccc"
     keyElements[keyIndex].style.borderColor = "#ff1a1a"
-
 }
+
 
 function clearScore() {
     document.getElementById("incorrect").innerText = "0";
     document.getElementById("correct").innerText = "0";
+}
+
+
+function resetGame(){
+    document.getElementsByClassName("game-area")[0].innerHTML = "";
+    keyIndex = 0;
+    min = 0;
+    sec = 0;
+    document.getElementById('min').innerHTML = "00"; 
+    document.getElementById('sec').innerHTML = "00";
 }
  
 
@@ -222,4 +251,7 @@ function gameTimer() {
     } 
 }
 
+closeModal.onclick = function() {
+    scoreModal.style.display = "none";
+  }
 

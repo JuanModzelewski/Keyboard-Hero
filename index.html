@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="assets/CSS/style.css">
+    <script src="https://kit.fontawesome.com/f1d882ac31.js" crossorigin="anonymous"></script>
 
 
     <title>Keyboard Hero</title>
@@ -38,10 +39,32 @@
         <button data-type="hard" class="btn">
             Hard
         </button>
-        <button data-type="reset" class="btn">
-            Reset
+        <button data-type="restart" class="btn">
+            Restart
         </button>
     </div>
+
+    <div id="game-score-modal" class="modal">
+
+        <div class="score-modal-content">
+            <span class="close">&times;</span>
+            
+            <div id="modal-scores">
+                <p class="modal-scores">You got a total of</p>
+                <div>
+                    <p class="modal-scores">Correct :<span id="modal-correct">0</span></p>
+                    <p class="modal-scores">Incorrect :<span id="modal-incorrect">0</span></p>
+                </div>
+            </div>
+
+            <div>
+                <button data-type="restart" class="modal-btn"><i class="fa-solid fa-repeat"></i></button>
+                <span>Try Again</span>
+            </div>
+
+        </div>
+      
+      </div>
     
     <script src="assets/js/script.js"></script>
 </body>

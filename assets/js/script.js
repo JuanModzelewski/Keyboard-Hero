@@ -250,12 +250,21 @@ function wordsPerMin() {
 }
 
 function resetGame(){
+    let starOne = document.getElementById("star-one");
+    let starTwo = document.getElementById("star-two");
+    let starThree = document.getElementById("star-three");
+
     timer = false;
     keyIndex = 0;
     min = 0;
     sec = 0;
     document.getElementById('min').innerHTML = "00"; 
     document.getElementById('sec').innerHTML = "00";
+    document.getElementById("modal-wpm").innerText = "00"
+    starOne.style.color = "#dfdfdf";
+    starTwo.style.color = "#dfdfdf";
+    starThree.style.color = "#dfdfdf";
+    
 }
 
 /**

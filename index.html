@@ -46,34 +46,48 @@
 
     <div id="game-score-modal" class="modal">
 
-        <div class="score-modal-content">
-            <span class="close">&times;</span>
+        <div id="score-modal-content">
             
-            <div id="modal-scores">
-                <p class="modal-scores">You got a total of</p>
-                <div>
-                    <p class="modal-scores">Correct :<span id="modal-correct">0</span></p>
-                    <p class="modal-scores">Incorrect :<span id="modal-incorrect">0</span></p>
+                <div id="star-content">
+                    <i id="star-one" class="fa-solid fa-star"></i>
+                    <i id="star-two" class="fa-solid fa-star"></i>
+                    <i id="star-three" class="fa-solid fa-star"></i>
+                </div>
+
+                <h2>YOUR SCORE</h2>
+
+                <div id="score-container">
+                    <p class="modal-scores">Correct : <span id="modal-correct">0</span></p>
+                    <p class="modal-scores">Incorrect : <span id="modal-incorrect">0</span></p>
+                    <p class="modal-scores">Words per Minute : <span id="modal-wpm">0</span></p>
+                </div>
+
+            <div id="modal-button-container">
+                <div id="retry-current-game">
+                    <h3>Retry</h3>
+                    <div>
+                        <button data-type="restart" class="modal-btn">
+                            <i class="fa-solid fa-repeat"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div id="change-difficulty">
+                    <div>
+                        <h3>Change Difficulty</h3>
+                    </div>
+                    <div>
+                        <button data-type="easy" class="modal-btn active">Easy</button>
+                        <button data-type="medium" class="modal-btn">Medium</button>
+                        <button data-type="hard" class="modal-btn">Hard</button>
+                    </div>
                 </div>
             </div>
-
-            <div>
-                <div>
-                    <h2>Try Again</h2>
-                    <button data-type="restart" class="modal-btn">
-                        <i class="fa-solid fa-repeat"></i>
-                    </button>
-                </div>
-                <div>
-                    <h2>Change Difficulty</h2>
-                    <button data-type="easy" class="modal-btn active">Easy</button>
-                    <button data-type="medium" class="modal-btn">Medium</button>
-                    <button data-type="hard" class="modal-btn">Hard</button>
-                </div>
-
-            </div>
-
+            <span class="close">&times;</span>
         </div>
+
+        
+
       
       </div>
     

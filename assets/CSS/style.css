@@ -21,9 +21,18 @@ body {
 }
 
 h2 {
+    font-size: 2rem;
+    color: #404244;
+    margin-top: 1rem;
+    margin-bottom: 0;
+
+}
+
+h3 {
     font-size: 1rem;
     color: #404244;
-    margin-top: 1.5rem;
+    margin-top: 1rem;
+    margin-bottom: 0;
 }
 
 .logo {
@@ -154,6 +163,8 @@ h2 {
     box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
 }
 
+
+
 .modal {
     display: none; /* Hidden by default */
     position: fixed; /* Stay in place */
@@ -170,13 +181,12 @@ h2 {
 }
 
 /* Modal Content */
-.score-modal-content {
+#score-modal-content {
     display: flex;
-    justify-content: center;
     flex-direction: column;
+    align-content: center;
     gap: none;
     background-color: #ffffff;
-    box-sizing: border-box;
     border-radius: 2em;
     width: 85%;
     height: 65vh;
@@ -184,13 +194,88 @@ h2 {
     max-width: 450px;
     margin-left: auto;
     margin-right: auto;
-    padding: 2rem;
+    padding: 1rem;
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 30px 90px;
 }
+
+
+#star-content {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    width: 100%;
+    height: 5rem;
+    margin-top: 2rem;
+}
+
+#star-one {
+    height: 5rem;
+    width: 5rem;
+    font-size: 5rem;
+    text-align: center;
+    margin: 0 0.5rem;
+    color: #c9c9c9;
+    text-shadow: rgba(0, 0, 0, 0.15) 0px 15px 25px, rgba(0, 0, 0, 0.05) 0px 5px 10px;
+}
+
+#star-two {
+    height: 5rem;
+    width: 5rem;
+    font-size: 5rem;
+    position: relative;
+    top: -15%;
+    text-align: center;
+    margin: 0 0.5rem;
+    color: #c9c9c9;
+    text-shadow: rgba(0, 0, 0, 0.15) 0px 15px 25px, rgba(0, 0, 0, 0.05) 0px 5px 10px;
+}
+
+#star-three {
+    height: 5rem;
+    width: 5rem;
+    font-size: 5rem;
+    text-align: center;
+    margin: 0 0.5rem;
+    color: #c9c9c9;
+    text-shadow: rgba(0, 0, 0, 0.15) 0px 15px 25px, rgba(0, 0, 0, 0.05) 0px 5px 10px;
+}
+
+#score-container {
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+    justify-content: center;
+    width: 50%;
+}
+
+.modal-scores {
+    font-size: 1.5rem;
+    margin: 0.5rem 0.5rem;
+}
+
+#modal-button-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-self: center;
+}
+
+#modal-button-container > div {
+    display: flex;
+    flex-direction: column;
+}
+
+#change-difficulty {
+    background-color: #eeeeee;
+    border-radius: 1rem;
+    padding: 0.5rem 1rem;
+}
+
 
 .modal-btn {
     display: inline-block;
     padding: 0.5em 1.7em;
-    margin: auto;
+    margin: 0.5rem 0.5rem;
     border: 0.16em solid rgb(255, 255, 255);
     border-radius: 2em;
     box-sizing: border-box;
@@ -219,23 +304,12 @@ h2 {
     display: none;
 }
 
-#modal-scores div {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-}
-
-.modal-scores {
-    font-size: 1.5rem;
-    padding: 1rem;
-    margin: auto;
-}
   
 /* The Close Button */
 .close {
     position: relative;
-    right: -103%;
-    top: -43%;
+    right: -98%;
+    top: -102%;
     color: #aaaaaa;
     float: right;
     font-size: 28px;
@@ -245,6 +319,7 @@ h2 {
     border: 5px solid #aaaaaa;
     background-color: #ffffff;
     border-radius: 50%;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
   
 .close:hover,

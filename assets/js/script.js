@@ -15,8 +15,6 @@ let sec = 0;
 * When gameType is selected the corresponding characters from game difficulty are pushed to the index.html DOM.
 */
 document.addEventListener("DOMContentLoaded", function() {
-
-    
     
     let buttons = document.getElementsByTagName("button");
   
@@ -45,6 +43,7 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     }
 
+
     /**
     * Correct score is incremented if keyValue is correct or wrongScore incremented if incorrect.
     * When keyIndex is equal to array length, timer is stopped and modal is displayed.
@@ -68,6 +67,8 @@ document.addEventListener("DOMContentLoaded", function() {
         } else if (keyIndex === keyElements.length){
             timer = false;
             scoreModal.style.display = "block";
+            displayAchievement();
+            wordsPerMin();
             hideModalButton();
             //document.getElementsByClassName("game-area")[0].innerHTML = "";
             //runGame(gameIndex);
@@ -78,6 +79,7 @@ document.addEventListener("DOMContentLoaded", function() {
     document.addEventListener("onclick", function() {
 
     });
+
 
     /** 
      * Starts gameTimer function when keyIndex = 1 and sets timer to true.
@@ -129,6 +131,7 @@ function runGame(gameType) {
   * */
   
 function gameDifficulty(gameType) {
+
     let gameResult = [];
     let easyCharacters = 'asdfghjkl';
     let mediumCharacters = 'asdfghjklqwertyuiop'
@@ -160,7 +163,8 @@ function gameDifficulty(gameType) {
   * creates span elements from characters provided within chosen difficulty.
   * Adds span elements to index.html DOM parent.
   */
-function populateContent(gameType) {
+function populateContent(gameType) { 
+
     let gameContent = document.getElementsByClassName("game-area")[0];
     let gameResult = gameDifficulty(gameType);
   
@@ -182,12 +186,12 @@ function keyValue(keyIndex){
 
 function incrementScore() {
     let oldScore = parseInt(document.getElementById("correct").innerText);
-    document.getElementById("correct").innerText = ++oldScore;
 
+    document.getElementById("correct").innerText = ++oldScore;
     document.getElementById("modal-correct").innerText = ++oldScore - 1;
-    
+
     let keyElements = document.getElementsByClassName("characters");
-    
+
     keyElements[keyIndex].style.backgroundColor = "#ccffd9"
     keyElements[keyIndex].style.borderColor = "#2eb82e"
 }
@@ -195,8 +199,8 @@ function incrementScore() {
 
 function incrementWrongScore() {
     let oldScore = parseInt(document.getElementById("incorrect").innerText);
-    document.getElementById("incorrect").innerText = ++oldScore;
 
+    document.getElementById("incorrect").innerText = ++oldScore;
     document.getElementById("modal-incorrect").innerText = ++oldScore - 1;
 
     let keyElements = document.getElementsByClassName("characters");
@@ -209,8 +213,41 @@ function incrementWrongScore() {
 function clearScore() {
     document.getElementById("incorrect").innerText = "0";
     document.getElementById("correct").innerText = "0";
+    document.getElementById("modal-incorrect").innerText = "0";
+    document.getElementById("modal-correct").innerText = "0";
 }
 
+
+function displayAchievement() {
+    let correctAnswers = document.getElementById("correct").innerText;
+    let starOne = document.getElementById("star-one");
+    let starTwo = document.getElementById("star-two");
+    let starThree = document.getElementById("star-three");
+
+    if (correctAnswers > 42) {
+        starOne.style.color = "yellow";
+        starTwo.style.color = "yellow";
+        starThree.style.color = "yellow";
+    } else if (correctAnswers >= 35) {
+        starOne.style.color = "yellow";
+        starTwo.style.color = "yellow";
+    } else if (correctAnswers >= 25) {
+        starOne.style.color = "yellow";
+    }
+
+}
+
+function wordsPerMin() {
+    minutes = document.getElementById('min').innerText;
+    seconds = document.getElementById('sec').innerText;
+    correct = document.getElementById("correct").innerText;
+
+    totalTime = (minutes * 60) + seconds;
+    wordCount = correct / 5;
+    wpm = totalTime / wordCount;
+ 
+    document.getElementById("modal-wpm").innerText = wpm.toFixed(1);
+}
 
 function resetGame(){
     timer = false;
@@ -254,19 +291,19 @@ function gameTimer() {
             sec = 0; 
         } 
   
-        let minString = min; 
-        let secString = sec; 
+        let minutes = min; 
+        let seconds = sec; 
   
         if (min < 10) { 
-            minString = "0" + minString; 
+            minutes = "0" + minutes; 
         } 
   
         if (sec < 10) { 
-            secString = "0" + secString; 
+            seconds = "0" + seconds; 
         } 
   
-        document.getElementById('min').innerHTML = minString; 
-        document.getElementById('sec').innerHTML = secString; 
+        document.getElementById('min').innerText = minutes; 
+        document.getElementById('sec').innerText = seconds; 
 
         setTimeout(gameTimer, 1000); 
     } 
@@ -277,6 +314,7 @@ closeModal.onclick = function() {
   }
 
 function hideModalButton() {
+    
     let modalButtons = document.getElementsByClassName("modal-btn");
 
     if (gameIndex === "easy") {

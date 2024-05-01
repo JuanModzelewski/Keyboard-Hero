@@ -12,21 +12,18 @@ let sec = 0;
 /**
 * Wait for the DOM to finish loading before running the game
 * Get the button elements and add event listeners to them
-* Identify active button and update class when clicked.
+* When gameType is selected the corresponding characters from game difficulty are pushed to the index.html DOM.
 */
 document.addEventListener("DOMContentLoaded", function() {
+
+    
     
     let buttons = document.getElementsByTagName("button");
-    let currentGame = document.getElementsByClassName("active");
   
     for (let button of buttons) {
         button.addEventListener("click", function() {
 
             keyIndex = 0;
-
-
-            this.blur(); // removes focus from button so that when space is pressed button is not activated
-
 
             if (this.getAttribute("data-type") === "restart") {
                 clearScore();
@@ -35,24 +32,24 @@ document.addEventListener("DOMContentLoaded", function() {
                 scoreModal.style.display = "none";
                 this.blur(); // removes focus from button so that when space is pressed button is not activated
             } else {
-                currentGame[0].className = currentGame[0].className.replace(" active", "");
-                this.className += " active";
-
                 let gameType = this.getAttribute("data-type");
                 runGame(gameType);
-                clearScore()
+                resetGame();
+                clearScore();
+                scoreModal.style.display = "none";
                 keyIndex = 0;
+                gameIndex = gameType;
+                currentGame();
                 this.blur(); // removes focus from button so that when space is pressed button is not activated
-                } 
-            
+            }
         });
     }
 
     /**
-    * Starts the game by clearing the div element with class "game-area"
-    * When gameType is selected the corresponding characters from game difficulty are populated into the div
-    */
-    document.addEventListener("keydown", function(event) {
+    * Correct score is incremented if keyValue is correct or wrongScore incremented if incorrect.
+    * When keyIndex is equal to array length, timer is stopped and modal is displayed.
+    * */
+    document.addEventListener("keypress", function(event) {
 
         let keyElements = document.getElementsByClassName("characters");    
     
@@ -71,20 +68,20 @@ document.addEventListener("DOMContentLoaded", function() {
         } else if (keyIndex === keyElements.length){
             timer = false;
             scoreModal.style.display = "block";
+            hideModalButton();
             //document.getElementsByClassName("game-area")[0].innerHTML = "";
             //runGame(gameIndex);
         }
+
     });
 
     document.addEventListener("onclick", function() {
 
-
-
     });
 
     /** 
-     * Starts gameTimer function when key Index = 1 and sets timer to true
-     * If timer = false the gameTImer will stop
+     * Starts gameTimer function when keyIndex = 1 and sets timer to true.
+     * If timer = false the gameTImer will stop.
      * */ 
     document.addEventListener("keydown", function() {
 
@@ -92,6 +89,7 @@ document.addEventListener("DOMContentLoaded", function() {
             timer = true;
             gameTimer();
         }
+
     });
 
     runGame("easy");
@@ -120,14 +118,15 @@ function runGame(gameType) {
         alert(`Unknown game type: ${gameType}`);
         throw `Unknown game type: ${gameType}. Aborting!`;
     }
+
+    return gameIndex
   }
-  
 
   /**
-  * Create a random string of letters from the easy characters provided
-  * Separates the string ever 5th character and joins with a space
-  * Splits the result string in separate array items with its own index
-  */
+  * Creates a random string of letters from provided difficulty characters.
+  * Separates the string every 5th character and joins with a space to create space character.
+  * Splits the result string in separate array of items with each character having its own index. *
+  * */
   
 function gameDifficulty(gameType) {
     let gameResult = [];
@@ -158,8 +157,8 @@ function gameDifficulty(gameType) {
 }
   
   /**
-  * creates span elements with form characters within chosen difficulty
-  *  
+  * creates span elements from characters provided within chosen difficulty.
+  * Adds span elements to index.html DOM parent.
   */
 function populateContent(gameType) {
     let gameContent = document.getElementsByClassName("game-area")[0];
@@ -214,16 +213,38 @@ function clearScore() {
 
 
 function resetGame(){
-    document.getElementsByClassName("game-area")[0].innerHTML = "";
+    timer = false;
     keyIndex = 0;
     min = 0;
     sec = 0;
     document.getElementById('min').innerHTML = "00"; 
     document.getElementById('sec').innerHTML = "00";
 }
+
+/**
+ * Changes button class based on game difficulty.
+ * Ensures current selected game button is always active. 
+ */
+function currentGame(){
+    let currentGame = document.getElementsByClassName("btn");
+
+    if (gameIndex === "easy") {               
+        currentGame[0].classList.add("active");
+        currentGame[1].classList.remove("active");
+        currentGame[2].classList.remove("active");
+    } else if (gameIndex === "medium") {
+        currentGame[1].classList.add("active");
+        currentGame[0].classList.remove("active");
+        currentGame[2].classList.remove("active");
+    } else if (gameIndex === "hard") {
+        currentGame[2].classList.add("active");
+        currentGame[0].classList.remove("active");
+        currentGame[1].classList.remove("active");
+    }
+}
  
 
-/* function to start stopwatch */
+// function to start a game timer
 function gameTimer() {
     if (timer) { 
         sec++; 
@@ -255,3 +276,22 @@ closeModal.onclick = function() {
     scoreModal.style.display = "none";
   }
 
+function hideModalButton() {
+    let modalButtons = document.getElementsByClassName("modal-btn");
+
+    if (gameIndex === "easy") {
+        modalButtons[1].style.display = "none";
+        modalButtons[2].style.display = "inline-block";
+        modalButtons[3].style.display = "inline-block";
+        } else if (gameIndex == "medium") {
+            modalButtons[1].style.display = "inline-block";
+            modalButtons[2].style.display = "none";
+            modalButtons[3].style.display = "inline-block";
+        } else if (gameIndex == "hard") {
+            modalButtons[1].style.display = "inline-block";
+            modalButtons[2].style.display = "inline-block";
+            modalButtons[3].style.display = "none";
+
+        }
+    
+}

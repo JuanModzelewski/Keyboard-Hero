@@ -25,23 +25,20 @@
     </div>
 
     <div class="score-area">
-        <p class="scores">Correct :<span id="correct">0</span></p>
-        <p class="scores">Incorrect :<span id="incorrect">0</span></p>
+        <p class="scores">Correct : <span id="correct">0</span></p>
+        <p id="keyboard-display">Display Keyboard <i class='fa-solid fa-angle-down'></i></p>
+        <p class="scores">Incorrect : <span id="incorrect">0</span></p>
     </div>
 
     <div class="button-container">
-        <button data-type="easy" class="btn">
-            Easy
-        </button>
-        <button data-type="medium" class="btn">
-            Medium
-        </button>
-        <button data-type="hard" class="btn">
-            Hard
-        </button>
-        <button data-type="restart" class="btn">
-            Restart
-        </button>
+        <button data-type="easy" class="btn">Easy</button>
+        <button data-type="medium" class="btn">Medium</button>
+        <button data-type="hard" class="btn">Hard</button>
+        <button data-type="restart" class="btn">Restart</button>
+    </div>
+
+    <div id="keyboard-image-area">
+        <img id="keyboard-image" class="keyboard-image" src="assets\Images\keyboard_layout.webp" alt="keyboard layout with finger placement index">
     </div>
 
     <div id="game-score-modal" class="achievement-modal">
@@ -97,7 +94,7 @@
             <p>The game designed to enhance and challenge your superhuman typing skills</p>
 
             <div id="modal-instructions">
-                <h2>Lets get started</h2>
+                <h3>Lets get started</h3>
                 <p>Place your left index finger on the "F" key and your right index finger on the "J" key.
                     Due to the tiny ridges on their surfaces, these two keys can be recognized without having to look at the keyboard.</p>
                 <img class="modal-home-keys" src="assets\Images\home_keys.webp" alt="image of the home keys a, s, d, f, j, k, l, ;">
@@ -107,6 +104,7 @@
                 <div id="next-step-modal">
                     <button id="next-step-modal" class="modal-btn">Next   <i class="fa-solid fa-circle-arrow-right"></i></button>
                 </div>
+
             </div>
             <span class="close-walkthrough-modal">&times;</span>
         </div>
@@ -118,19 +116,24 @@
                 <p>Learn the remaining letters of the alphabet. Find the location of each letter on the keyboard and press each key with the finger that is closest to it. 
                     (Thumbs are exclusively used on the space bar)</p>
                 <img class="modal-keyboard-layout" src="assets\Images\keyboard_layout.webp" alt="keyboard layout with finger placement index">
+
                 <div>
                     <p><strong>Easy</strong> - Only uses characters from the <strong>Home Key</strong> row.</p>
                     <p><strong>Medium</strong> - Use characters from the <strong>Home Key</strong> row and the row above.</p>
                     <p><strong>Hard</strong> - Includes the characters from easy and medium with the addition of characters from the bottom row.</p>
                 </div>
+
                 <div id="modal-difficulty-selection">
                     <p><strong>Select a Difficulty :</strong></p>
-                    <button data-type="easy" class="modal-btn">Easy</button>
-                    <button data-type="medium" class="modal-btn">Medium</button>
-                    <button data-type="hard" class="modal-btn">Hard</button>
+                    <div>
+                        <button data-type="easy" class="modal-btn">Easy</button>
+                        <button data-type="medium" class="modal-btn">Medium</button>
+                        <button data-type="hard" class="modal-btn">Hard</button>
+                    </div>
                 </div>
+
             </div>
-            <span class="close-walkthrough-modal">&times;</span>
+            <span class="close-walkthrough-modal-two">&times;</span>
         </div>
     </div>
     

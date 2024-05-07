@@ -18,27 +18,28 @@ body {
 .heading {
     text-align: center;
     font-size: 2.5rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
 }
 
 h1 {
     font-size: 2.5rem;
     color: #404244;
-    margin-top: 1rem;
-    margin-bottom: 1rem;
+
+    
 }
 
 h2 {
     font-size: 2rem;
     color: #404244;
-    margin: 0.5rem 0;
+    margin: 1rem 0;
 
 }
 
 h3 {
-    font-size: 1rem;
+    font-size: 1.25rem;
     color: #404244;
-    margin-top: 1rem;
-    margin-bottom: 0;
+    margin: 0.5rem 0;
 }
 
 .logo {
@@ -53,9 +54,9 @@ h3 {
     text-align: right;
     width: 85%;
     max-width: 830px;
-    margin: auto;
     font-size: 1.5rem;
-    padding: 1rem;
+    padding: 0.5rem 0;
+    align-self: center;
 }
 
 
@@ -70,8 +71,7 @@ h3 {
     border-radius: 2em;
     border: #445361 solid 0.2rem;
     width: 85%;
-    height: 65vh;
-    max-height: 450px;
+    height: fit-content;
     max-width: 830px;
     margin-left: auto;
     margin-right: auto;
@@ -90,22 +90,12 @@ h3 {
     align-content: center;
 }
 
-.timer-area {
-    text-align: right;
-    width: 85%;
-    max-width: 830px;
-    margin: auto;
-    font-size: 1.5rem;
-    padding: 1rem;
-
-}
-
 .score-area {
     display: flex;
     justify-content: space-between;
     width: 85%;
     max-width: 830px;
-    margin: auto;
+    margin: 1rem auto;
     font-size: 1.5rem;
 }
 
@@ -127,6 +117,18 @@ h3 {
     
 }
 
+#keyboard-display {
+    color: rgb(56, 56, 56);
+    margin: 0;
+    padding: 1rem;
+}
+
+#keyboard-display:hover {
+    text-decoration: underline;
+    text-underline-offset: 0.5rem;
+}
+
+
 .button-container {
     display: flex;
     align-content: center;
@@ -139,7 +141,6 @@ h3 {
 .btn {
     display: inline-block;
     padding: 0.5em 1.7em;
-    margin: 1em 0.1em 0.1em 0;
     border: 0.16em solid rgb(255, 255, 255);
     border-radius: 2em;
     box-sizing: border-box;
@@ -170,6 +171,23 @@ h3 {
     box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
 }
 
+
+#keyboard-image-area {
+    display: flex;
+    align-content: center;
+    margin: auto ;
+}
+
+.keyboard-image {
+    display: none;
+    max-width: 850px;
+    width: 100%;
+    margin: 2rem auto;
+}
+
+.show {
+    display: block;
+}
 
 /* Score Modal Content */
 .achievement-modal {
@@ -286,6 +304,11 @@ h3 {
     padding: 0.5rem 1rem;
 }
 
+#retry-current-game {
+    justify-content: center;
+    margin-right: 1rem;
+}
+
 
 .modal-btn {
     display: inline-block;
@@ -313,6 +336,10 @@ h3 {
     background-color:  #88c7cc;
     font-weight: 300;
     box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+}
+
+.modal-btn i {
+    margin-left: 0.5rem;
 }
 
 .hidden {
@@ -410,34 +437,6 @@ h3 {
     align-self: flex-end;
 }
 
-.modal-btn {
-    display: inline-block;
-    padding: 0.5em 1.7em;
-    margin: 0.5rem 0.5rem;
-    border: 0.16em solid rgb(255, 255, 255);
-    border-radius: 2em;
-    box-sizing: border-box;
-    text-decoration: none;
-    font-family: "Roboto", sans-serif;
-    font-size: 1rem;
-    font-weight: 300;
-    color: #ffffff;
-    background-color: #445361;
-    text-shadow: 0 0.04em 0.04em rgba(255, 255, 255, 0.253);
-    text-align: center;
-    transition: all 0.2s;
-    width: fit-content;
-    height: fit-content;
-    box-shadow: rgba(0, 0, 0, 0.25) 0px 25px 50px -12px;
-  }
-
-.modal-btn:hover {
-    color: #242c33;
-    background-color:  #88c7cc;
-    font-weight: 300;
-    box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
-}
-
 .hidden {
     display: none;
 }
@@ -484,10 +483,14 @@ h3 {
     box-shadow: rgba(0, 0, 0, 0.4) 0px 30px 90px;
 }
 
+.modal-keyboard-layout {
+    margin: 1rem 0;
+}
 
 #modal-two-instructions {
     display: flex;
     align-self: center;
+    align-content: center;
     flex-direction: column;
     width: 90%;
     background-color: #ececec;
@@ -502,10 +505,41 @@ h3 {
     margin-bottom: 0.5rem;
 }
 
+
 #modal-difficulty-selection {
-    align-self: center;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    border: 2px solid #88c7cc;
+    border-radius: 1rem;
+    width: 60%;
+    margin: auto;
 }
 
 #modal-difficulty-selection p {
     text-align: center;
+}
+
+/* The Close Button */
+.close-walkthrough-modal-two {
+    position: relative;
+    right: -99%;
+    top: -104%;
+    color: #aaaaaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    width: 2rem;
+    height: 2rem;
+    border: 5px solid #aaaaaa;
+    background-color: #ffffff;
+    border-radius: 50%;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+  
+.close-walkthrough-modal-two:hover,
+.close-walkthrough-modal-two:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
 }

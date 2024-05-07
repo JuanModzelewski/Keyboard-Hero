@@ -1,10 +1,16 @@
 // global variable to hold the position of each character and increment its value.
 let staticWalkthroughOne = document.getElementById("static-walkthrough-modal");
 let staticWalkthroughTwo = document.getElementById("static-walkthrough-modal-two");
-let scoreModal = document.getElementById("game-score-modal");
-let closeModal = document.getElementsByClassName("close")[0];
-let nextModal = document.getElementById("next-step-modal");
+let closeModalWalkthroughOne = document.getElementsByClassName("close-walkthrough-modal")[0];
+let closeModalWalkthroughTwo = document.getElementsByClassName("close-walkthrough-modal-two")[0];
 
+let scoreModal = document.getElementById("game-score-modal");
+let closeScoreModal = document.getElementsByClassName("close")[0];
+
+let nextModalButton = document.getElementById("next-step-modal");
+
+let displayKeyboard = document.getElementById("keyboard-display");
+let keyboardShow = "none";
 
 let keyIndex = 0;
 let gameIndex = "";
@@ -19,13 +25,23 @@ let sec = 0;
 */
 document.addEventListener("DOMContentLoaded", function() {
 
+    // Opens static walkthrough as soon as user enters page.
     staticWalkthroughOne.style.display = "block";
 
-    nextModal.addEventListener("click", function(){
+    nextModalButton.addEventListener("click", function(){
         staticWalkthroughOne.style.display = "none";
         staticWalkthroughTwo.style.display = "block";
-
     });
+
+    window.onclick = function(event) {
+        if (event.target == scoreModal) {
+            scoreModal.style.display = "none"; 
+        } else if (event.target == staticWalkthroughOne) {
+            staticWalkthroughOne.style.display = "none";
+        } else if (event.target == staticWalkthroughTwo) {
+            staticWalkthroughTwo.style.display = "none";
+        }
+      }
     
     let buttons = document.getElementsByTagName("button");
   
@@ -106,7 +122,20 @@ document.addEventListener("DOMContentLoaded", function() {
 
     runGame("easy");
     currentGame();
-    
+
+    // Display keyboard image with color coded keys and finger placement
+    displayKeyboard.onclick = function() {    
+        if (keyboardShow === "none") {
+            showKeyboard();
+            keyboardShow = "display"
+            displayKeyboard.style.color = "rgb(26, 140, 148)"
+        } else {
+            hideKeyboard();
+            keyboardShow = "none"
+            displayKeyboard.style.color = "rgb(56, 56, 56)"
+        }
+    }
+
 
 });
 
@@ -164,6 +193,8 @@ function gameDifficulty(gameType) {
     gameResult = gameResult.match(/.{1,5}/g).join(" ").split(''); // Creates a string every 5 characters and joins them with a space, then splits each character into an array.
     return gameResult;
 }
+
+
   
   /**
   * creates span elements from characters provided within chosen difficulty.
@@ -324,17 +355,32 @@ function gameTimer() {
     } 
 }
 
-closeModal.onclick = function() {
+closeScoreModal.onclick = function() {
     scoreModal.style.display = "none";
-
 }
 
-window.onclick = function(event) {
-    if (event.target == scoreModal, staticWalkthroughOne) {
-      scoreModal.style.display = "none";
-      staticWalkthroughOne.style.display = "none";
-    }
-  }
+closeModalWalkthroughOne.onclick = function() {
+    staticWalkthroughOne.style.display = "none";
+}
+
+closeModalWalkthroughTwo.onclick = function() {
+    staticWalkthroughTwo.style.display = "none";
+}
+
+function showKeyboard(){
+    let keyboardImage = document.getElementById("keyboard-image");
+
+    displayKeyboard.innerHTML = "Hide Keyboard <i class='fa-solid fa-angle-up'></i>";
+    keyboardImage.style.display = "block";
+}
+
+function hideKeyboard(){
+    let keyboardImage = document.getElementById("keyboard-image");
+
+    displayKeyboard.innerHTML = "Display Keyboard <i class='fa-solid fa-angle-down'></i>";
+    keyboardImage.style.display = "none";
+}
+
 
 function hideModalButton() {
     

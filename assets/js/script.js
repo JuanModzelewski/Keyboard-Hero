@@ -1,6 +1,9 @@
 // global variable to hold the position of each character and increment its value.
+let staticWalkthroughOne = document.getElementById("static-walkthrough-modal");
+let staticWalkthroughTwo = document.getElementById("static-walkthrough-modal-two");
 let scoreModal = document.getElementById("game-score-modal");
 let closeModal = document.getElementsByClassName("close")[0];
+let nextModal = document.getElementById("next-step-modal");
 
 
 let keyIndex = 0;
@@ -15,6 +18,14 @@ let sec = 0;
 * When gameType is selected the corresponding characters from game difficulty are pushed to the index.html DOM.
 */
 document.addEventListener("DOMContentLoaded", function() {
+
+    staticWalkthroughOne.style.display = "block";
+
+    nextModal.addEventListener("click", function(){
+        staticWalkthroughOne.style.display = "none";
+        staticWalkthroughTwo.style.display = "block";
+
+    });
     
     let buttons = document.getElementsByTagName("button");
   
@@ -28,6 +39,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 resetGame();
                 runGame(gameIndex);
                 scoreModal.style.display = "none";
+                staticWalkthroughTwo.style.display = "none";
                 this.blur(); // removes focus from button so that when space is pressed button is not activated
             } else {
                 let gameType = this.getAttribute("data-type");
@@ -35,11 +47,13 @@ document.addEventListener("DOMContentLoaded", function() {
                 resetGame();
                 clearScore();
                 scoreModal.style.display = "none";
+                staticWalkthroughTwo.style.display = "none";
                 keyIndex = 0;
                 gameIndex = gameType;
                 currentGame();
                 this.blur(); // removes focus from button so that when space is pressed button is not activated
             }
+
         });
     }
 
@@ -76,10 +90,6 @@ document.addEventListener("DOMContentLoaded", function() {
 
     });
 
-    document.addEventListener("onclick", function() {
-
-    });
-
 
     /** 
      * Starts gameTimer function when keyIndex = 1 and sets timer to true.
@@ -95,6 +105,8 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 
     runGame("easy");
+    currentGame();
+    
 
 });
 
@@ -116,9 +128,6 @@ function runGame(gameType) {
     } else if (gameType === "hard") {
         populateContent(gameType);
         gameIndex = "hard";
-    } else {
-        alert(`Unknown game type: ${gameType}`);
-        throw `Unknown game type: ${gameType}. Aborting!`;
     }
 
     return gameIndex
@@ -150,10 +159,7 @@ function gameDifficulty(gameType) {
         for (let i = 0; i < resultLength; i++) {
             gameResult += hardCharacters.charAt(Math.floor(Math.random() * hardCharacters.length));
         }
-    } else {
-        alert(`Unknown game type: ${gameType}`);
-        throw `Unknown game type: ${gameType}. Aborting!`;
-    }
+    } 
     
     gameResult = gameResult.match(/.{1,5}/g).join(" ").split(''); // Creates a string every 5 characters and joins them with a space, then splits each character into an array.
     return gameResult;
@@ -320,6 +326,14 @@ function gameTimer() {
 
 closeModal.onclick = function() {
     scoreModal.style.display = "none";
+
+}
+
+window.onclick = function(event) {
+    if (event.target == scoreModal, staticWalkthroughOne) {
+      scoreModal.style.display = "none";
+      staticWalkthroughOne.style.display = "none";
+    }
   }
 
 function hideModalButton() {

@@ -20,11 +20,17 @@ body {
     font-size: 2.5rem;
 }
 
+h1 {
+    font-size: 2.5rem;
+    color: #404244;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
 h2 {
     font-size: 2rem;
     color: #404244;
-    margin-top: 2rem;
-    margin-bottom: 0;
+    margin: 0.5rem 0;
 
 }
 
@@ -36,8 +42,9 @@ h3 {
 }
 
 .logo {
-    width: 55%;
     margin: auto;
+    width: 90%;
+    max-width: 850px;
 }
 
 /* --------- Game layout */
@@ -164,8 +171,8 @@ h3 {
 }
 
 
-
-.modal {
+/* Score Modal Content */
+.achievement-modal {
     display: none; /* Hidden by default */
     position: fixed; /* Stay in place */
     z-index: 1; /* Sit on top */
@@ -180,7 +187,6 @@ h3 {
     
 }
 
-/* Modal Content */
 #score-modal-content {
     display: flex;
     flex-direction: column;
@@ -336,4 +342,170 @@ h3 {
     color: #000;
     text-decoration: none;
     cursor: pointer;
+}
+
+/* Walkthrough Modal Content */
+.walkthrough-modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    padding-top: 100px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0, 0, 0, 0.6); /* Black w/ opacity */
+    
+}
+
+#static-walkthrough-content {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    gap: none;
+    background-color: #ffffff;
+    border-radius: 2em;
+    width: 85%;
+    height: 65vh;
+    max-height: 650px;
+    max-width: 650px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 1rem;
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 30px 90px;
+}
+
+#modal-instructions {
+    display: flex;
+    align-self: center;
+    flex-direction: column;
+    width: 90%;
+    background-color: #ececec;
+    padding: 1rem;
+    border-radius: 1rem;
+}
+
+#modal-instructions p {
+    text-align: left;
+    font-size: 1rem;
+    line-height: 1.5rem;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.modal-logo {
+    max-width: 80%;
+    align-self: center;
+}
+
+.modal-home-keys {
+    width: 80%;
+    margin: 1rem 0;
+    border-radius: 1rem;
+}
+
+#next-step-modal {
+    align-self: flex-end;
+}
+
+.modal-btn {
+    display: inline-block;
+    padding: 0.5em 1.7em;
+    margin: 0.5rem 0.5rem;
+    border: 0.16em solid rgb(255, 255, 255);
+    border-radius: 2em;
+    box-sizing: border-box;
+    text-decoration: none;
+    font-family: "Roboto", sans-serif;
+    font-size: 1rem;
+    font-weight: 300;
+    color: #ffffff;
+    background-color: #445361;
+    text-shadow: 0 0.04em 0.04em rgba(255, 255, 255, 0.253);
+    text-align: center;
+    transition: all 0.2s;
+    width: fit-content;
+    height: fit-content;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 25px 50px -12px;
+  }
+
+.modal-btn:hover {
+    color: #242c33;
+    background-color:  #88c7cc;
+    font-weight: 300;
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+}
+
+.hidden {
+    display: none;
+}
+
+  
+/* The Close Button */
+.close-walkthrough-modal {
+    position: relative;
+    right: -98%;
+    top: -102%;
+    color: #aaaaaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    width: 2rem;
+    height: 2rem;
+    border: 5px solid #aaaaaa;
+    background-color: #ffffff;
+    border-radius: 50%;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+  
+.close-walkthrough-modal:hover,
+.close-walkthrough-modal:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+#static-walkthrough-two-content {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    gap: none;
+    background-color: #ffffff;
+    border-radius: 2em;
+    width: 85%;
+    height: 65vh;
+    max-height: 750px;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 1rem;
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 30px 90px;
+}
+
+
+#modal-two-instructions {
+    display: flex;
+    align-self: center;
+    flex-direction: column;
+    width: 90%;
+    background-color: #ececec;
+    padding: 1rem;
+    border-radius: 1rem;
+}
+#modal-two-instructions p {
+    text-align: left;
+    font-size: 1rem;
+    line-height: 1.5rem;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+#modal-difficulty-selection {
+    align-self: center;
+}
+
+#modal-difficulty-selection p {
+    text-align: center;
 }

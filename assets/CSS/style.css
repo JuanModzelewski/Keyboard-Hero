@@ -181,7 +181,7 @@ h1 {
     width: 100%;
     margin: 0;
     background: url("/assets/images/minimalistic_background.jpg") no-repeat center center / cover;
-    opacity: 0.15;
+    opacity: 0.2;
     z-index: -1;
 
 }

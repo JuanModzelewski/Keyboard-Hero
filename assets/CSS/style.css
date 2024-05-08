@@ -75,6 +75,19 @@ h1 {
     align-content: center;
 }
 
+#text-area-overlay {
+    position: absolute;
+    justify-self: center;
+    align-self: center;
+    width: 85%;
+    height: 370px;
+    max-width: 830px;
+    margin: 10rem auto;
+    font-size: 3rem;
+    opacity: 0;
+    border-radius: 1rem;
+}
+
 .score-area {
     display: flex;
     justify-content: space-between;

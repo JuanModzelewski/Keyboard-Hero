@@ -153,8 +153,6 @@ function runGame(gameType) {
 
     document.getElementsByClassName("game-area")[0].innerHTML = "";
   
-    gameDifficulty(gameType);
-  
     if (gameType === "easy") {
         populateContent(gameType);
         gameIndex = "easy";

@@ -4,10 +4,10 @@ let staticWalkthroughTwo = document.getElementById("static-walkthrough-modal-two
 let closeModalWalkthroughOne = document.getElementsByClassName("close-walkthrough-modal")[0];
 let closeModalWalkthroughTwo = document.getElementsByClassName("close-walkthrough-modal-two")[0];
 
-let scoreModal = document.getElementById("game-score-modal");
-let closeScoreModal = document.getElementsByClassName("close")[0];
-
 let nextModalButton = document.getElementById("next-step-modal");
+
+let scoreModal = document.getElementById("score-modal");
+let closeScoreModal = document.getElementsByClassName("close")[0];
 
 let displayKeyboard = document.getElementById("keyboard-display");
 let keyboardShow = "none";
@@ -104,6 +104,10 @@ document.addEventListener("DOMContentLoaded", function() {
             //runGame(gameIndex);
         }
 
+        if(e.keyCode == 32 && e.target == document.body) {
+            e.preventDefault()
+          }
+
     });
 
 
@@ -113,7 +117,7 @@ document.addEventListener("DOMContentLoaded", function() {
      * */ 
     document.addEventListener("keydown", function() {
 
-        if (keyIndex === 1){
+        if (keyIndex === 0){
             timer = true;
             gameTimer();
         }
@@ -134,9 +138,12 @@ document.addEventListener("DOMContentLoaded", function() {
             keyboardShow = "none"
             displayKeyboard.style.color = "rgb(56, 56, 56)"
         }
+
+        displayKeyboard.blur();
     }
 
-
+    window.addEventListener('keydown', function() {if (event.keyCode == 32) {document.body.style.overflow = "hidden";}});
+    window.addEventListener('keyup', function() {if (event.keyCode == 32) {document.body.style.overflow = "auto";}});
 });
 
 
@@ -262,24 +269,23 @@ function displayAchievement() {
     let starThree = document.getElementById("star-three");
 
     if (correctAnswers > 42) {
-        starOne.style.color = "yellow";
-        starTwo.style.color = "yellow";
-        starThree.style.color = "yellow";
+        starOne.style.color = "#ffd700";
+        starTwo.style.color = "#ffd700";
+        starThree.style.color = "#ffd700";
     } else if (correctAnswers >= 35) {
-        starOne.style.color = "yellow";
-        starTwo.style.color = "yellow";
+        starOne.style.color = "#ffd700";
+        starTwo.style.color = "#ffd700";
     } else if (correctAnswers >= 25) {
-        starOne.style.color = "yellow";
+        starOne.style.color = "#ffd700";
     }
 
 }
 
 function wordsPerMin() {
-    minutes = document.getElementById('min').innerText;
-    seconds = document.getElementById('sec').innerText;
     correct = document.getElementById("correct").innerText;
 
-    totalTime = (minutes * 60) + seconds;
+
+    totalTime = (60 * min) + sec;
     wordCount = correct / 5;
     wpm = totalTime / wordCount;
  

@@ -41,6 +41,7 @@ document.addEventListener("DOMContentLoaded", function() {
         } else if (event.target == staticWalkthroughTwo) {
             staticWalkthroughTwo.style.display = "none";
         }
+        runGame("easy");
       }
     
     let buttons = document.getElementsByTagName("button");
@@ -356,14 +357,17 @@ function gameTimer() {
 
 closeScoreModal.onclick = function() {
     scoreModal.style.display = "none";
+    runGame("easy");
 }
 
 closeModalWalkthroughOne.onclick = function() {
     staticWalkthroughOne.style.display = "none";
+    runGame("easy");
 }
 
 closeModalWalkthroughTwo.onclick = function() {
     staticWalkthroughTwo.style.display = "none";
+    runGame("easy");
 }
 
 function showKeyboard(){

@@ -1,151 +1,140 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="assets/CSS/style.css">
-    <script src="https://kit.fontawesome.com/f1d882ac31.js" crossorigin="anonymous"></script>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="stylesheet" href="assets/CSS/style.css">
+		<script src="https://kit.fontawesome.com/f1d882ac31.js" crossorigin="anonymous"></script>
+		<title>Keyboard Hero</title>
+	</head>
 
+	<body>
+		<h1 class="heading">
+			<img class="logo" src="assets/images/keyboard_hero_logo.png" alt="logo image">
+		</h1>
+		<div class="timer-area">
+			<span class="digit">Time : </span> 
+			<span class="digit" id="min">00</span> 
+			<span class="txt">:</span>
+			<span class="digit" id="sec">00</span>
+		</div>
 
-    <title>Keyboard Hero</title>
-</head>
-<body>
-    <h1 class="heading">
-        <img class="logo" src="assets/images/keyboard_hero_logo.png" alt="logo image">
-    </h1>
+		<textarea id="text-area-overlay"></textarea>
 
-    <div class="timer-area">
-        <span class="digit">Time : </span> 
-        <span class="digit" id="min">00</span> 
-        <span class="txt">:</span>
-        <span class="digit" id="sec">00</span>
-    </div>
+		<div class="game-area">
+		</div>
+		<div class="score-area">
+			<p class="scores">Correct : <span id="correct">0</span></p>
+			<p id="keyboard-display">Display Keyboard <i class='fa-solid fa-angle-down'></i></p>
+			<p class="scores">Incorrect : <span id="incorrect">0</span></p>
+		</div>
 
-    <textarea id="text-area-overlay">
+		<div class="button-container">
+			<button data-type="easy" class="btn">Easy</button>
+			<button data-type="medium" class="btn">Medium</button>
+			<button data-type="hard" class="btn">Hard</button>
+			<button data-type="restart" class="btn">Restart</button>
+		</div>
 
-    </textarea>
+		<div id="keyboard-image-area">
+			<img id="keyboard-image" class="keyboard-image" src="assets/images/keyboard_layout.webp" alt="keyboard layout with finger placement index">
+		</div>
 
-    <div class="game-area">
+		<div id="background-image"></div>
 
-    </div>
+		<div id="score-modal" class="achievement-modal">
+			<div id="score-modal-content">
+				<div id="star-content">
+					<i id="star-one" class="fa-solid fa-star"></i>
+					<i id="star-two" class="fa-solid fa-star"></i>
+					<i id="star-three" class="fa-solid fa-star"></i>
+				</div>
 
-    <div class="score-area">
-        <p class="scores">Correct : <span id="correct">0</span></p>
-        <p id="keyboard-display">Display Keyboard <i class='fa-solid fa-angle-down'></i></p>
-        <p class="scores">Incorrect : <span id="incorrect">0</span></p>
-    </div>
+				<h2>YOUR SCORE</h2>
+				<div id="score-container">
+					<p class="modal-scores">Correct : <span id="modal-correct">0</span></p>
+					<p class="modal-scores">Incorrect : <span id="modal-incorrect">0</span></p>
+					<p class="modal-scores">Words per Minute : <span id="modal-wpm">0</span></p>
+				</div>
 
-    <div class="button-container">
-        <button data-type="easy" class="btn">Easy</button>
-        <button data-type="medium" class="btn">Medium</button>
-        <button data-type="hard" class="btn">Hard</button>
-        <button data-type="restart" class="btn">Restart</button>
-    </div>
+				<div id="modal-button-container">
+					<div id="retry-current-game">
+						<h3>Retry</h3>
+						<div>
+							<button data-type="restart" class="modal-btn">
+							<i class="fa-solid fa-repeat"></i>
+							</button>
+						</div>
+					</div>
 
-    <div id="keyboard-image-area">
-        <img id="keyboard-image" class="keyboard-image" src="assets/images/keyboard_layout.webp" alt="keyboard layout with finger placement index">
-    </div>
+					<div id="change-difficulty">
+						<div>
+							<h3>Change Difficulty</h3>
+						</div>
+						<div>
+							<button data-type="easy" class="modal-btn">Easy</button>
+							<button data-type="medium" class="modal-btn">Medium</button>
+							<button data-type="hard" class="modal-btn">Hard</button>
+						</div>
+					</div>
 
-    <div id="background-image">
+				</div>
+				<span class="close">&times;</span>
+			</div>
+		</div>
+		
+        <div id="static-walkthrough-modal" class="walkthrough-modal">
+			<div id="static-walkthrough-content">
+				<span class="close-walkthrough-modal">&times;</span>
+				<h2>Welcome to</h2>
+				<img class="modal-logo" src="assets/images/keyboard_hero_logo.png" alt="Keyboard hero logo">
+				<p>The game designed to enhance and challenge your superhuman typing skills</p>
 
-    </div>
+				<div id="modal-instructions">
+					<h3>Lets get started</h3>
+					<p>Place your left index finger on the "F" key and your right index finger on the "J" key.
+						Due to the tiny ridges on their surfaces, these two keys can be recognized without having to look at the keyboard.
+					</p>
+					<img class="modal-home-keys" src="assets/images/home_keys.webp" alt="image of the home keys a, s, d, f, j, k, l, ;">
+					<p>Placing your fingers back on the home row while not typing is the first rule of touch typing.
+						You will use the home row as a point of reference to figure out where each key is located.
+					</p>
+					<div id="next-step-modal">
+						<button class="modal-btn">Next <i class="fa-solid fa-circle-arrow-right"></i></button>
+					</div>
+				</div>
 
-    <div id="score-modal" class="achievement-modal">
+			</div>
+		</div>
 
-        <div id="score-modal-content">
-            
-                <div id="star-content">
-                    <i id="star-one" class="fa-solid fa-star"></i>
-                    <i id="star-two" class="fa-solid fa-star"></i>
-                    <i id="star-three" class="fa-solid fa-star"></i>
-                </div>
-
-                <h2>YOUR SCORE</h2>
-
-                <div id="score-container">
-                    <p class="modal-scores">Correct : <span id="modal-correct">0</span></p>
-                    <p class="modal-scores">Incorrect : <span id="modal-incorrect">0</span></p>
-                    <p class="modal-scores">Words per Minute : <span id="modal-wpm">0</span></p>
-                </div>
-
-            <div id="modal-button-container">
-                <div id="retry-current-game">
-                    <h3>Retry</h3>
+		<div id="static-walkthrough-modal-two" class="walkthrough-modal">
+			<div id="static-walkthrough-two-content">
+				<div id="modal-two-instructions">
+					<p>Learn the remaining letters of the alphabet. Find the location of each letter on the keyboard and press each key with the finger that is closest to it. 
+						(Thumbs are exclusively used on the space bar)
+					</p>
+					<img class="modal-keyboard-layout" src="assets/images/keyboard_layout.webp" alt="keyboard layout with finger placement index">
+					
                     <div>
-                        <button data-type="restart" class="modal-btn">
-                            <i class="fa-solid fa-repeat"></i>
-                        </button>
-                    </div>
-                </div>
+						<p><strong>Easy</strong> - Only uses characters from the <strong>Home Key</strong> row.</p>
+						<p><strong>Medium</strong> - Use characters from the <strong>Home Key</strong> row and the row above.</p>
+						<p><strong>Hard</strong> - Includes the characters from easy and medium with the addition of characters from the bottom row.</p>
+					</div>
+					
+                    <div id="modal-difficulty-selection">
+						<p><strong>Select a Difficulty :</strong></p>
+						<div>
+							<button data-type="easy" class="modal-btn">Easy</button>
+							<button data-type="medium" class="modal-btn">Medium</button>
+							<button data-type="hard" class="modal-btn">Hard</button>
+						</div>
+					</div>
 
-                <div id="change-difficulty">
-                    <div>
-                        <h3>Change Difficulty</h3>
-                    </div>
-                    <div>
-                        <button data-type="easy" class="modal-btn">Easy</button>
-                        <button data-type="medium" class="modal-btn">Medium</button>
-                        <button data-type="hard" class="modal-btn">Hard</button>
-                    </div>
-                </div>
-
-            </div>
-            <span class="close">&times;</span>
-
-        </div>
-
-    </div>
-
-    <div id="static-walkthrough-modal" class="walkthrough-modal">
-        <div id="static-walkthrough-content">
-            <span class="close-walkthrough-modal">&times;</span>
-            <h2>Welcome to</h2>
-            <img class="modal-logo" src="assets/images/keyboard_hero_logo.png" alt="Keyboard hero logo">
-            <p>The game designed to enhance and challenge your superhuman typing skills</p>
-
-            <div id="modal-instructions">
-                <h3>Lets get started</h3>
-                <p>Place your left index finger on the "F" key and your right index finger on the "J" key.
-                    Due to the tiny ridges on their surfaces, these two keys can be recognized without having to look at the keyboard.</p>
-                <img class="modal-home-keys" src="assets/images/home_keys.webp" alt="image of the home keys a, s, d, f, j, k, l, ;">
-                <p>Placing your fingers back on the home row while not typing is the first rule of touch typing.
-                    You will use the home row as a point of reference to figure out where each key is located.</p>
-
-                <div id="next-step-modal">
-                    <button id="next-step-modal" class="modal-btn">Next   <i class="fa-solid fa-circle-arrow-right"></i></button>
-                </div>
-
-            </div>
-        </div>
-    </div>
-
-    <div id="static-walkthrough-modal-two" class="walkthrough-modal">
-        <div id="static-walkthrough-two-content">
-            <div id="modal-two-instructions">
-                <p>Learn the remaining letters of the alphabet. Find the location of each letter on the keyboard and press each key with the finger that is closest to it. 
-                    (Thumbs are exclusively used on the space bar)</p>
-                <img class="modal-keyboard-layout" src="assets/images/keyboard_layout.webp" alt="keyboard layout with finger placement index">
-
-                <div>
-                    <p><strong>Easy</strong> - Only uses characters from the <strong>Home Key</strong> row.</p>
-                    <p><strong>Medium</strong> - Use characters from the <strong>Home Key</strong> row and the row above.</p>
-                    <p><strong>Hard</strong> - Includes the characters from easy and medium with the addition of characters from the bottom row.</p>
-                </div>
-
-                <div id="modal-difficulty-selection">
-                    <p><strong>Select a Difficulty :</strong></p>
-                    <div>
-                        <button data-type="easy" class="modal-btn">Easy</button>
-                        <button data-type="medium" class="modal-btn">Medium</button>
-                        <button data-type="hard" class="modal-btn">Hard</button>
-                    </div>
-                </div>
-
-            </div>
-            <span class="close-walkthrough-modal-two">&times;</span>
-        </div>
-    </div>
-    
-    <script src="assets/js/script.js"></script>
-</body>
+				</div>
+				<span class="close-walkthrough-modal-two">&times;</span>
+			</div>
+		</div>
+        
+		<script src="assets/js/script.js"></script>
+	</body>
 </html>

@@ -15,6 +15,7 @@ let keyboardShow = "none";
 let keyIndex = 0;
 let gameIndex = "";
 
+let timer = Boolean;
 let min = 0;
 let sec = 0;
 
@@ -42,7 +43,7 @@ document.addEventListener("DOMContentLoaded", function() {
             staticWalkthroughTwo.style.display = "none";
         }
         runGame("easy");
-      }
+      };
     
     let buttons = document.getElementsByTagName("button");
   
@@ -127,16 +128,16 @@ document.addEventListener("DOMContentLoaded", function() {
     displayKeyboard.onclick = function() {    
         if (keyboardShow === "none") {
             showKeyboard();
-            keyboardShow = "display"
-            displayKeyboard.style.color = "rgb(26, 140, 148)"
+            keyboardShow = "display";
+            displayKeyboard.style.color = "rgb(26, 140, 148)";
         } else {
             hideKeyboard();
-            keyboardShow = "none"
-            displayKeyboard.style.color = "rgb(56, 56, 56)"
+            keyboardShow = "none";
+            displayKeyboard.style.color = "rgb(56, 56, 56)";
         }
 
         displayKeyboard.blur();
-    }
+    };
 
     window.addEventListener('keydown', function() {if (event.keyCode == 32) {document.body.style.overflow = "hidden";}});
     window.addEventListener('keyup', function() {if (event.keyCode == 32) {document.body.style.overflow = "auto";}});
@@ -160,7 +161,7 @@ function runGame(gameType) {
         gameIndex = "hard";
     }
 
-    return gameIndex
+    return gameIndex;
   }
 
   /**
@@ -173,8 +174,8 @@ function gameDifficulty(gameType) {
 
     let gameResult = [];
     let easyCharacters = 'asdfghjkl';
-    let mediumCharacters = 'asdfghjklqwertyuiop'
-    let hardCharacters = 'asdfghjklqwertyuiopzxcvbnm'
+    let mediumCharacters = 'asdfghjklqwertyuiop';
+    let hardCharacters = 'asdfghjklqwertyuiopzxcvbnm';
     let resultLength = 40;
   
     if (gameType === "easy") {
@@ -210,7 +211,7 @@ function populateContent(gameType) {
         let gameItem = document.createElement('span');
         gameItem.innerHTML = gameResult[j];
         gameContent.appendChild(gameItem);
-        gameItem.classList.add("characters")
+        gameItem.classList.add("characters");
     }
 }
   
@@ -230,8 +231,8 @@ function incrementScore() {
 
     let keyElements = document.getElementsByClassName("characters");
 
-    keyElements[keyIndex].style.backgroundColor = "#ccffd9"
-    keyElements[keyIndex].style.borderColor = "#2eb82e"
+    keyElements[keyIndex].style.backgroundColor = "#ccffd9";
+    keyElements[keyIndex].style.borderColor = "#2eb82e";
 }
 
 
@@ -243,8 +244,8 @@ function incrementWrongScore() {
 
     let keyElements = document.getElementsByClassName("characters");
 
-    keyElements[keyIndex].style.backgroundColor = "#ffcccc"
-    keyElements[keyIndex].style.borderColor = "#ff1a1a"
+    keyElements[keyIndex].style.backgroundColor = "#ffcccc";
+    keyElements[keyIndex].style.borderColor = "#ff1a1a";
 }
 
 
@@ -276,8 +277,10 @@ function displayAchievement() {
 }
 
 function wordsPerMin() {
-    correct = document.getElementById("correct").innerText;
-
+    let correct = document.getElementById("correct").innerText;
+    let totalTime = Number;
+    let wordCount = Number;
+    let wpm = Number;
 
     totalTime = (60 * min) + sec;
     wordCount = correct / 5;
@@ -297,7 +300,7 @@ function resetGame(){
     sec = 0;
     document.getElementById('min').innerHTML = "00"; 
     document.getElementById('sec').innerHTML = "00";
-    document.getElementById("modal-wpm").innerText = "00"
+    document.getElementById("modal-wpm").innerText = "00";
     starOne.style.color = "#dfdfdf";
     starTwo.style.color = "#dfdfdf";
     starThree.style.color = "#dfdfdf";
@@ -358,17 +361,17 @@ function gameTimer() {
 closeScoreModal.onclick = function() {
     scoreModal.style.display = "none";
     runGame("easy");
-}
+};
 
 closeModalWalkthroughOne.onclick = function() {
     staticWalkthroughOne.style.display = "none";
     runGame("easy");
-}
+};
 
 closeModalWalkthroughTwo.onclick = function() {
     staticWalkthroughTwo.style.display = "none";
     runGame("easy");
-}
+};
 
 function showKeyboard(){
     let keyboardImage = document.getElementById("keyboard-image");

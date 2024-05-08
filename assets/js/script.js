@@ -103,11 +103,6 @@ document.addEventListener("DOMContentLoaded", function() {
             //document.getElementsByClassName("game-area")[0].innerHTML = "";
             //runGame(gameIndex);
         }
-
-        if(e.keyCode == 32 && e.target == document.body) {
-            e.preventDefault()
-          }
-
     });
 
 

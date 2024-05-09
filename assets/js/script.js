@@ -424,3 +424,12 @@ function onNextBtnClick(){
     staticWalkthroughOne.style.display = "none";
     staticWalkthroughTwo.style.display = "block";
 }
+
+let buttons = document.getElementsByTagName("button");
+
+document.getElementById("button").addEventListener('click', function(){
+    var inputElement = document.getElementById('hiddenInput');
+    inputElement.style.visibility = 'visible'; // unhide the input
+    inputElement.focus(); // focus on it so keyboard pops
+    inputElement.style.visibility = 'hidden'; // hide it again
+});

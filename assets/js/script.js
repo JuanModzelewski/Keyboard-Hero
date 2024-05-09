@@ -1,4 +1,8 @@
 // global variable to hold the position of each character and increment its value.
+let screenSize = window.matchMedia("(max-width: 1024px)");
+let warningModal = document.getElementById("mobile-warning")
+let closWarning = document.getElementsByClassName("close-warning-modal")[0];
+
 let staticWalkthroughOne = document.getElementById("static-walkthrough-modal");
 let staticWalkthroughTwo = document.getElementById("static-walkthrough-modal-two");
 let closeModalWalkthroughOne = document.getElementsByClassName("close-walkthrough-modal")[0];
@@ -38,7 +42,10 @@ document.addEventListener("DOMContentLoaded", function() {
     document.addEventListener("keydown", startTimer);
 
     displayGame("easy");
+    
     currentGame();
+
+    mobileWarning(screenSize);
 
     // Prevents space-bar from scrolling when keyboard image is displayed.
     window.addEventListener('keydown', function() {if (event.keyCode == 32) {document.body.style.overflow = "hidden";}});
@@ -58,6 +65,10 @@ function initEventListeners() {
 
     // Display keyboard image with color coded keys and finger placement
     displayKeyboard.addEventListener("click", displayKeyboardButton);
+
+    screenSize.addEventListener("change", function(){
+        mobileWarning(screenSize);
+    });
 }
 
 /**
@@ -425,11 +436,15 @@ function onNextBtnClick(){
     staticWalkthroughTwo.style.display = "block";
 }
 
-let buttons = document.getElementsByTagName("button");
+// Tutorial taken from W3S
+function mobileWarning(screenSize){
+    if (screenSize.matches) {
+        warningModal.style.display = "block";
+      }  else {
+        warningModal.style.display = "none"
+      }
+}
 
-buttons.addEventListener('click', function(){
-    var inputElement = document.getElementById('hiddenInput');
-    inputElement.style.visibility = 'visible'; // unhide the input
-    inputElement.focus(); // focus on it so keyboard pops
-    inputElement.style.visibility = 'hidden'; // hide it again
-});
+closWarning.onclick = function(){
+    warningModal.style.display = "none";
+};

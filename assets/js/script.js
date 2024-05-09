@@ -15,7 +15,7 @@ let keyboardShow = "none";
 let keyIndex = 0;
 let gameIndex = "";
 
-let timer = Boolean;
+let timer = "";
 let min = 0;
 let sec = 0;
 
@@ -26,125 +26,101 @@ let sec = 0;
 */
 document.addEventListener("DOMContentLoaded", function() {
 
+    initEventListeners();
+
     // Opens static walkthrough as soon as user enters page.
     staticWalkthroughOne.style.display = "block";
 
-    nextModalButton.addEventListener("click", function(){
-        staticWalkthroughOne.style.display = "none";
-        staticWalkthroughTwo.style.display = "block";
-    });
+    // RunGame and check keystrokes
+    document.addEventListener("keypress", runGame);
 
-    window.onclick = function(event) {
-        if (event.target == scoreModal) {
-            scoreModal.style.display = "none"; 
-        } else if (event.target == staticWalkthroughOne) {
-            staticWalkthroughOne.style.display = "none";
-        } else if (event.target == staticWalkthroughTwo) {
-            staticWalkthroughTwo.style.display = "none";
-        }
-        runGame("easy");
-      };
-    
-    let buttons = document.getElementsByTagName("button");
-  
-    for (let button of buttons) {
-        button.addEventListener("click", function() {
+    // Starts game time if timer is set to true
+    document.addEventListener("keydown", startTimer);
 
-            keyIndex = 0;
-
-            if (this.getAttribute("data-type") === "restart") {
-                clearScore();
-                resetGame();
-                runGame(gameIndex);
-                scoreModal.style.display = "none";
-                staticWalkthroughTwo.style.display = "none";
-                this.blur(); // removes focus from button so that when space is pressed button is not activated
-            } else {
-                let gameType = this.getAttribute("data-type");
-                runGame(gameType);
-                resetGame();
-                clearScore();
-                scoreModal.style.display = "none";
-                staticWalkthroughTwo.style.display = "none";
-                keyIndex = 0;
-                gameIndex = gameType;
-                currentGame();
-                this.blur(); // removes focus from button so that when space is pressed button is not activated
-            }
-
-        });
-    }
-
-
-    /**
-    * Correct score is incremented if keyValue is correct or wrongScore incremented if incorrect.
-    * When keyIndex is equal to array length, timer is stopped and modal is displayed.
-    * */
-    document.addEventListener("keypress", function(event) {
-
-        let keyElements = document.getElementsByClassName("characters");    
-    
-        if (keyIndex < keyElements.length){
-            
-            if (event.key === keyValue(keyIndex)) {
-                incrementScore();
-                keyIndex++;
-            } else {
-                incrementWrongScore();
-                keyIndex++;
-            }
-    
-            keyElements[keyIndex].style.borderColor = "#0000ff";
-    
-        } else if (keyIndex === keyElements.length){
-            timer = false;
-            scoreModal.style.display = "block";
-            displayAchievement();
-            wordsPerMin();
-            hideModalButton();
-            //document.getElementsByClassName("game-area")[0].innerHTML = "";
-            //runGame(gameIndex);
-        }
-    });
-
-
-    /** 
-     * Starts gameTimer function when keyIndex = 1 and sets timer to true.
-     * If timer = false the gameTImer will stop.
-     * */ 
-    document.addEventListener("keydown", function() {
-
-        if (keyIndex === 0){
-            timer = true;
-            gameTimer();
-        }
-
-    });
-
-    runGame("easy");
+    displayGame("easy");
     currentGame();
 
-    // Display keyboard image with color coded keys and finger placement
-    displayKeyboard.onclick = function() {    
-        if (keyboardShow === "none") {
-            showKeyboard();
-            keyboardShow = "display";
-            displayKeyboard.style.color = "rgb(26, 140, 148)";
-        } else {
-            hideKeyboard();
-            keyboardShow = "none";
-            displayKeyboard.style.color = "rgb(56, 56, 56)";
-        }
-
-        displayKeyboard.blur();
-    };
-
+    // Prevents space-bar from scrolling when keyboard image is displayed.
     window.addEventListener('keydown', function() {if (event.keyCode == 32) {document.body.style.overflow = "hidden";}});
     window.addEventListener('keyup', function() {if (event.keyCode == 32) {document.body.style.overflow = "auto";}});
 });
 
+function initEventListeners() {
+    
+    window.addEventListener("click", onWindowClick);
 
-function runGame(gameType) {
+    nextModalButton.addEventListener("click", onNextBtnClick);
+
+    let buttons = document.getElementsByTagName("button");
+    for (let button of buttons) {
+        button.addEventListener("click", selectGame);
+    }
+
+    // Display keyboard image with color coded keys and finger placement
+    displayKeyboard.addEventListener("click", displayKeyboardButton);
+}
+
+/**
+* Runs the game on keypress and checks each keystroke to corresponding characters in game area.
+* Increments scores as event occurs, displaying correct and incorrect scores.
+* When keyIndex is equal to array length, timer is stopped and modal is displayed.
+*/
+function runGame(event){
+    
+    let keyElements = document.getElementsByClassName("characters");
+
+    if (keyIndex === (keyElements.length - 1)){
+        timer = false;
+        scoreModal.style.display = "block";
+        displayAchievement();
+        displayModalScores()
+        charactersPerMin();
+        hideModalButton();
+        onWindowClick();
+    }
+
+    if (keyIndex < keyElements.length){
+        
+        if (event.key === keyValue(keyIndex)) {
+            incrementScore();
+            keyIndex++;
+        } else {
+            incrementWrongScore();
+            keyIndex++;
+        }
+
+        keyElements[keyIndex].style.borderColor = "#0000ff";
+    }
+}
+
+// Directs game data depending on which game mode was selected.
+function selectGame(){
+
+    keyIndex = 0;
+
+    if (this.getAttribute("data-type") === "restart") {
+        clearScore();
+        resetGame();
+        displayGame(gameIndex);
+        scoreModal.style.display = "none";
+        staticWalkthroughTwo.style.display = "none";
+        this.blur(); // removes focus from button so that when space is pressed button is not activated
+    } else {
+        let gameType = this.getAttribute("data-type");
+        displayGame(gameType);
+        resetGame();
+        clearScore();
+        scoreModal.style.display = "none";
+        staticWalkthroughTwo.style.display = "none";
+        gameIndex = gameType;
+        currentGame();
+        this.blur(); // removes focus from button so that when space is pressed button is not activated
+    }
+
+}
+
+// Checks which game has been selected and populates the game area with characters from selected difficulty.
+function displayGame(gameType){
 
     keyIndex = 0;
 
@@ -162,15 +138,14 @@ function runGame(gameType) {
     }
 
     return gameIndex;
-  }
+}
 
-  /**
-  * Creates a random string of letters from provided difficulty characters.
-  * Separates the string every 5th character and joins with a space to create space character.
-  * Splits the result string in separate array of items with each character having its own index. *
-  * */
-  
-function gameDifficulty(gameType) {
+/**
+* Creates a random string of characters from a provided string per difficulty.
+* Separates the string every 5th character and joins them with a space to create space character.
+* Splits the resulted string into a separate array of items with each character having its own index.
+*/
+function gameDifficulty(gameType){
 
     let gameResult = [];
     let easyCharacters = 'asdfghjkl';
@@ -196,13 +171,11 @@ function gameDifficulty(gameType) {
     return gameResult;
 }
 
-
-  
-  /**
-  * creates span elements from characters provided within chosen difficulty.
-  * Adds span elements to index.html DOM parent.
-  */
-function populateContent(gameType) { 
+/**
+* Creates span elements from characters provided within chosen difficulty.
+* Adds span elements to index.html DOM parent.
+*/
+function populateContent(gameType){ 
 
     let gameContent = document.getElementsByClassName("game-area")[0];
     let gameResult = gameDifficulty(gameType);
@@ -214,50 +187,51 @@ function populateContent(gameType) {
         gameItem.classList.add("characters");
     }
 }
-  
 
+// Gets the key index from each span in game area and presents it value.
 function keyValue(keyIndex){
-    // get the key index from each span in game area and presents it value
     let keyElements = document.getElementsByClassName("characters");
     return keyElements[keyIndex].innerHTML;
 }
 
+// increments correct score value.
+function incrementScore(){
+    updateScore("correct", true);
+}
 
-function incrementScore() {
-    let oldScore = parseInt(document.getElementById("correct").innerText);
+// increments incorrect score value.
+function incrementWrongScore(){
+    updateScore("incorrect", false);
+}
 
-    document.getElementById("correct").innerText = ++oldScore;
-    document.getElementById("modal-correct").innerText = ++oldScore - 1;
+// updates score to index.html id for each value.
+function updateScore(scoreNodeId, isCorrect){
+    let oldScore = parseInt(document.getElementById(scoreNodeId).innerText);
+
+    document.getElementById(scoreNodeId).innerText = ++oldScore;
+    // document.getElementById("modal-correct").innerText = ++oldScore - 1;
 
     let keyElements = document.getElementsByClassName("characters");
 
-    keyElements[keyIndex].style.backgroundColor = "#ccffd9";
-    keyElements[keyIndex].style.borderColor = "#2eb82e";
+    let bgColor =  "#ffcccc", borderColor =  "#ff1a1a";
+    if (isCorrect) {
+        bgColor = "#ccffd9";
+        borderColor = "#2eb82e";
+    }
+
+    keyElements[keyIndex].style.backgroundColor = bgColor;
+    keyElements[keyIndex].style.borderColor = borderColor;
+    
 }
 
-
-function incrementWrongScore() {
-    let oldScore = parseInt(document.getElementById("incorrect").innerText);
-
-    document.getElementById("incorrect").innerText = ++oldScore;
-    document.getElementById("modal-incorrect").innerText = ++oldScore - 1;
-
-    let keyElements = document.getElementsByClassName("characters");
-
-    keyElements[keyIndex].style.backgroundColor = "#ffcccc";
-    keyElements[keyIndex].style.borderColor = "#ff1a1a";
-}
-
-
-function clearScore() {
+function clearScore(){
     document.getElementById("incorrect").innerText = "0";
     document.getElementById("correct").innerText = "0";
     document.getElementById("modal-incorrect").innerText = "0";
     document.getElementById("modal-correct").innerText = "0";
 }
 
-
-function displayAchievement() {
+function displayAchievement(){
     let correctAnswers = document.getElementById("correct").innerText;
     let starOne = document.getElementById("star-one");
     let starTwo = document.getElementById("star-two");
@@ -276,17 +250,20 @@ function displayAchievement() {
 
 }
 
-function wordsPerMin() {
-    let correct = document.getElementById("correct").innerText;
-    let totalTime = Number;
-    let wordCount = Number;
-    let wpm = Number;
+function displayModalScores(){
+    let correctAnswers = document.getElementById("correct").innerText;
+    let incorrectAnswers = document.getElementById("incorrect").innerText; 
 
-    totalTime = (60 * min) + sec;
-    wordCount = correct / 5;
-    wpm = totalTime / wordCount;
+    document.getElementById("modal-correct").innerText = correctAnswers;
+    document.getElementById("modal-incorrect").innerText = incorrectAnswers;
+}
+
+function charactersPerMin(){
+    let characters = document.getElementById("correct").innerText;
+    let totalTimeInSeconds =  sec + (60 * min);
+    let cpm = (characters / totalTimeInSeconds) * 60
  
-    document.getElementById("modal-wpm").innerText = wpm.toFixed(1);
+    document.getElementById("modal-cpm").innerText = cpm.toFixed(1);
 }
 
 function resetGame(){
@@ -300,7 +277,7 @@ function resetGame(){
     sec = 0;
     document.getElementById('min').innerHTML = "00"; 
     document.getElementById('sec').innerHTML = "00";
-    document.getElementById("modal-wpm").innerText = "00";
+    document.getElementById("modal-cpm").innerText = "00";
     starOne.style.color = "#dfdfdf";
     starTwo.style.color = "#dfdfdf";
     starThree.style.color = "#dfdfdf";
@@ -328,10 +305,9 @@ function currentGame(){
         currentGame[1].classList.remove("active");
     }
 }
- 
 
 // function to start a game timer
-function gameTimer() {
+function gameTimer(){
     if (timer) { 
         sec++; 
   
@@ -358,19 +334,26 @@ function gameTimer() {
     } 
 }
 
-closeScoreModal.onclick = function() {
+function startTimer(){
+    if (keyIndex === 0){
+        timer = true;
+        gameTimer();
+    }
+}
+
+closeScoreModal.onclick = function(){
     scoreModal.style.display = "none";
-    runGame("easy");
+    displayGame("easy");
 };
 
-closeModalWalkthroughOne.onclick = function() {
+closeModalWalkthroughOne.onclick = function(){
     staticWalkthroughOne.style.display = "none";
-    runGame("easy");
+    displayGame("easy");
 };
 
-closeModalWalkthroughTwo.onclick = function() {
+closeModalWalkthroughTwo.onclick = function(){
     staticWalkthroughTwo.style.display = "none";
-    runGame("easy");
+    displayGame("easy");
 };
 
 function showKeyboard(){
@@ -387,8 +370,22 @@ function hideKeyboard(){
     keyboardImage.style.display = "none";
 }
 
+// Display keyboard image with color coded keys and finger placement
+function displayKeyboardButton(){
+    if (keyboardShow === "none") {
+        showKeyboard();
+        keyboardShow = "display";
+        displayKeyboard.style.color = "rgb(26, 140, 148)";
+    } else {
+        hideKeyboard();
+        keyboardShow = "none";
+        displayKeyboard.style.color = "rgb(56, 56, 56)";
+    }
 
-function hideModalButton() {
+    displayKeyboard.blur();
+}
+
+function hideModalButton(){
     
     let modalButtons = document.getElementsByClassName("modal-btn");
 
@@ -396,15 +393,34 @@ function hideModalButton() {
         modalButtons[1].style.display = "none";
         modalButtons[2].style.display = "inline-block";
         modalButtons[3].style.display = "inline-block";
-        } else if (gameIndex == "medium") {
-            modalButtons[1].style.display = "inline-block";
-            modalButtons[2].style.display = "none";
-            modalButtons[3].style.display = "inline-block";
-        } else if (gameIndex == "hard") {
-            modalButtons[1].style.display = "inline-block";
-            modalButtons[2].style.display = "inline-block";
-            modalButtons[3].style.display = "none";
-
-        }
+    } else if (gameIndex == "medium") {
+        modalButtons[1].style.display = "inline-block";
+        modalButtons[2].style.display = "none";
+         modalButtons[3].style.display = "inline-block";
+    } else if (gameIndex == "hard") {
+        modalButtons[1].style.display = "inline-block";
+        modalButtons[2].style.display = "inline-block";
+        modalButtons[3].style.display = "none";
+    }
     
+}
+
+function onWindowClick(){
+    if (event.target == scoreModal) {
+        scoreModal.style.display = "none";
+        clearScore();
+        resetGame();
+        displayGame(gameIndex);
+    } else if (event.target == staticWalkthroughOne) {
+        staticWalkthroughOne.style.display = "none";
+        displayGame("easy");
+    } else if (event.target == staticWalkthroughTwo) {
+        staticWalkthroughTwo.style.display = "none";
+        displayGame("easy");
+    } 
+}
+
+function onNextBtnClick(){
+    staticWalkthroughOne.style.display = "none";
+    staticWalkthroughTwo.style.display = "block";
 }

@@ -1,6 +1,6 @@
 // global variables.
 let screenSize = window.matchMedia("(max-width: 1024px)");
-let warningModal = document.getElementById("mobile-warning")
+let warningModal = document.getElementById("mobile-warning");
 let closWarning = document.getElementsByClassName("close-warning-modal")[0];
 
 let staticWalkthroughOne = document.getElementById("static-walkthrough-modal");
@@ -78,7 +78,7 @@ function initEventListeners() {
     // Close modal listeners 
     closeModalWalkthroughOne.addEventListener("click", hideWalkthroughModal);
     closeModalWalkthroughTwo.addEventListener("click", hideWalkthroughModal);
-    closeAchievementModal.addEventListener("click", hideAchievementModal)
+    closeAchievementModal.addEventListener("click", hideAchievementModal);
 }
 
 /**
@@ -94,7 +94,7 @@ function runGame(event){
         timer = false;
         achievementModal.style.display = "block";
         displayScoreStars();
-        displayModalScores()
+        displayModalScores();
         charactersPerMin();
         hideModalButton();
         onWindowClick();
@@ -275,7 +275,7 @@ function displayModalScores(){
 function charactersPerMin(){
     let characters = document.getElementById("correct").innerText;
     let totalTimeInSeconds =  sec + (60 * min);
-    let cpm = (characters / totalTimeInSeconds) * 60
+    let cpm = (characters / totalTimeInSeconds) * 60;
  
     document.getElementById("modal-cpm").innerText = cpm.toFixed(1);
 }
@@ -368,7 +368,6 @@ function hideAchievementModal(){
     achievementModal.style.display = "none";
     displayGame(gameIndex);
     resetGame();
-    clearScore();
 }
 
 function hideWalkthroughModal(){
@@ -429,7 +428,6 @@ function hideModalButton(){
 function onWindowClick(){
     if (event.target == achievementModal) {
         achievementModal.style.display = "none";
-        clearScore();
         resetGame();
         displayGame(gameIndex);
     } else if (event.target == staticWalkthroughOne) {
@@ -451,7 +449,7 @@ function mobileWarning(screenSize){
     if (screenSize.matches) {
         warningModal.style.display = "block";
       }  else {
-        warningModal.style.display = "none"
+        warningModal.style.display = "none";
       }
 }
 

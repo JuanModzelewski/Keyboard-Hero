@@ -30,9 +30,8 @@ h1 {
 .logo {
     margin: auto;
     margin-top: 1rem;
-    width: 870px;
-    height: fit-content;
-    max-width: 90%;
+    width: 90%;
+    max-width: 870px;
     border-radius: 1rem;
 }
 

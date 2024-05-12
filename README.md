@@ -95,9 +95,9 @@ The game offers three difficulty levels: easy, medium, and hard. Each level adds
 
 ## Technologies Used
 ### Languages Used
-- HTML5
-- CSS3
-- JavaScript
+- HTML: Used to create the structure and content of Keyboard Hero.
+- CSS: Used to style HTML structure elements
+- JavaScript: Provided logic to make Keyboard Hero interactive 
 
 ### Frameworks, Libraries & Programs Used
 - [Google Fonts:](https://fonts.google.com/)
@@ -148,22 +148,16 @@ The game offers three difficulty levels: easy, medium, and hard. Each level adds
 
 ![w3 Validator HTML](/assests/images/Readme-images/w3c-validator-css.jpg)
 
-3. Accessability
+3. JavaScript
+![JShint](/assets/images/readme-images/keyboard_hero_jshint_results.jpg)
+
+4. Accessability
     - All chosen fonts and color schemes provide clear readability and accessibility, checked when running through with lighthouse in devtools.
 
 ### Google Lighthouse Testing
 #### Desktop
-- Static Walkthrough Page 1 <br>
-![Static Walkthrough Page 1](assests/images/Readme-images/lighthouse-test-homepage-desktop.jpg)
-
-- Static Walkthrough Page 2 <br>
-![Static Walkthrough Page 2](assests/images/Readme-images/lighthouse-test-get-started-desktop.jpg)
-
-- Game Screen <br>
-![Game Screen](assests/images/Readme-images/lighthouse-test-resources-desktop.jpg)
-
-- Achievements Modal <br>
-![Achievements Modal](assests/images/Readme-images/lighthouse-test-signup-desktop.jpg)
+- Mode (Navigation)
+![Navigation Result](/assets/images/readme-images/lighthouse_score_desktop.jpg)
 
 
 

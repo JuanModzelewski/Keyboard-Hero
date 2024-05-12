@@ -3,6 +3,12 @@
 	<head>
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		<!--Additional Meta Tags-->
+		<meta name="description" content="Improve typing accuracy and speed with a typing game that teaches and test you with three levels of difficulty">
+	
+		<meta name="keywords" content="Touch typing, typing game, keyboard game, typing speed and accuracy, improve typing skills">
+
 		<link rel="stylesheet" href="assets/CSS/style.css">
 		<script src="https://kit.fontawesome.com/f1d882ac31.js" crossorigin="anonymous"></script>
 		<title>Keyboard Hero</title>
@@ -12,24 +18,28 @@
 		<h1 class="heading">
 			<img class="logo" src="assets/images/keyboard_hero_logo.png" alt="logo image">
 		</h1>
+
+		<!--Game timer, displays minutes and seconds. 
+			Timer starts on the first keystroke and stops on the last keystroke-->
 		<div class="timer-area">
 			<span class="digit">Time : </span> 
 			<span class="digit" id="min">00</span> 
 			<span class="txt">:</span>
 			<span class="digit" id="sec">00</span>
 		</div>
-		
-		<input id="hiddenInput" style="visibility: hidden;">
 
-		<div class="game-area" id="game-area">
+		<!--Game area is populated with span elements using a javaScript function and characters from the selected difficulty-->
+		<div id="game-area">
 		</div>
 
+		<!--Score area displays correct and incorrect keystrokes-->
 		<div class="score-area">
 			<p class="scores">Correct : <span id="correct">0</span></p>
 			<p id="keyboard-display">Display Keyboard <i class='fa-solid fa-angle-down'></i></p>
 			<p class="scores">Incorrect : <span id="incorrect">0</span></p>
 		</div>
 
+		<!--Game buttons for selecting difficulty and restarting current game difficulty-->
 		<div class="button-container">
 			<button data-type="easy" class="btn">Easy</button>
 			<button data-type="medium" class="btn">Medium</button>
@@ -37,14 +47,18 @@
 			<button data-type="restart" class="btn">Restart</button>
 		</div>
 
+		<!--When clicked, Displays a keyboard image with hand placement and finger index showing closest keys to each finger. Hides image when clicked again-->
 		<div id="keyboard-image-area">
-			<img id="keyboard-image" class="keyboard-image" src="assets/images/keyboard_layout.webp" alt="keyboard layout with finger placement index">
+			<img id="keyboard-image" src="assets/images/keyboard_layout.webp" alt="keyboard layout with finger placement index">
 		</div>
 
 		<div id="background-image"></div>
 
-		<div id="score-modal" class="achievement-modal">
-			<div id="score-modal-content">
+		
+		<!--Achievement modal content displays once the game is complete showing correct and incorrect answers with calculated characters per minute.
+			Buttons are provide to try again with current difficulty or select a new difficulty-->
+		<div id="achievement-modal" class="modal">
+			<div id="achievement-modal-content">
 				<div id="star-content">
 					<i id="star-one" class="fa-solid fa-star"></i>
 					<i id="star-two" class="fa-solid fa-star"></i>
@@ -78,15 +92,14 @@
 							<button data-type="hard" class="modal-btn">Hard</button>
 						</div>
 					</div>
-
 				</div>
-				<span class="close">&times;</span>
+				<i class="close-achievement-modal fa-regular fa-circle-xmark"></i>
 			</div>
 		</div>
 		
-        <div id="static-walkthrough-modal" class="walkthrough-modal">
+		<!--Displays static walkthrough page one, with introduction to game and basic tutorial on touch typing-->
+        <div id="static-walkthrough-modal" class="modal">
 			<div id="static-walkthrough-content">
-				<span class="close-walkthrough-modal">&times;</span>
 				<h2>Welcome to</h2>
 				<img class="modal-logo" src="assets/images/keyboard_hero_logo.png" alt="Keyboard hero logo">
 				<p>The game designed to enhance and challenge your superhuman typing skills</p>
@@ -104,11 +117,12 @@
 						<button class="modal-btn">Next <i class="fa-solid fa-circle-arrow-right"></i></button>
 					</div>
 				</div>
-
+				<i class="close-walkthrough-modal fa-regular fa-circle-xmark"></i>
 			</div>
 		</div>
 
-		<div id="static-walkthrough-modal-two" class="walkthrough-modal">
+		<!--Displays static walkthrough page two, displays a keyboard image showing hand placement and identifying which finger is closest to each character-->
+		<div id="static-walkthrough-modal-two" class="modal">
 			<div id="static-walkthrough-two-content">
 				<div id="modal-two-instructions">
 					<p>Learn the remaining letters of the alphabet. Find the location of each letter on the keyboard and press each key with the finger that is closest to it. 
@@ -132,11 +146,12 @@
 					</div>
 
 				</div>
-				<span class="close-walkthrough-modal-two">&times;</span>
+				<i class="close-walkthrough-modal-two fa-regular fa-circle-xmark"></i>
 			</div>
 		</div>
 
-		<div id="mobile-warning" class="mobile-warning-modal">
+		<!--JavaScript media query modal, displays a warning when screen size is less than or equal to 1024px, warning users that the game requires an external keyboard and cannot be used with onscreen keyboards-->
+		<div id="mobile-warning" class="modal">
 			<div id="mobile-warning-content">
 				<div id="warning-icon">
 					<i class="fa-solid fa-triangle-exclamation"></i>
@@ -144,10 +159,10 @@
 						<h3>WARNING</h3>
 					</div>				
 				</div>
-			<p>This game requires an external keyboard, <br>as it demonstrated methods to improve typing speed and accuracy through touch typing and hand placement.</p>
-			<p>If you are on a computer or tablet with an external keyboard please close this window and continue with your learning experience.</p>
+			<p>This game requires the use of an external keyboard as it explains how to use touch typing and hand placement to increase typing accuracy and speed.</p>
+			<p>Closing this window will allow you to resume your learning if you are using a computer or tablet with an external keyboard.</p>
 
-				<span class="close-warning-modal">&times;</span>
+				<i class="close-warning-modal fa-regular fa-circle-xmark"></i>
 			</div>
 		</div>
         

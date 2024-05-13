@@ -44,6 +44,11 @@ The game offers three difficulty levels: easy, medium, and hard. Each level adds
 - Button color `#445361`
 - Button color hover `#88c7cc`
 - Button color active `rgb(20, 103, 109)`
+- Correct Characters `#ccffd9`
+- Correct Character bottom border `#2eb82e`
+- Incorrect characters `#ffcccc`
+- Incorrect Character bottom border `#ff1a1a`
+- Current Character Indicator bottom border `#0000ff`
 
 
 #### Fonts
@@ -52,11 +57,14 @@ The game offers three difficulty levels: easy, medium, and hard. Each level adds
 
 #### Images
 - The background image adds depth and contrast to the playing area, without being obtrusive or overwhelming. [pixabay](https://pixabay.com/illustrations/mountains-forest-landscape-sky-6302023/)
+- The keyboard graphic is simple and easy to grasp, with colors on each finger indicating the closest key to that finger. Created By author using free vector form [vecteezy](https://www.vecteezy.com/vector-art/6549237-vector-illustration-of-keyboard-view-suitable-for-basic-elements-of-computer-text-input-devices-smartphones-and-digital-technology-qwerty-keyboard-layout)
+- Logo was designed and created by author using Affinity Design.
+- Home Keys image was designed and created by author using Affinity Design.
 <br>
 <br>
 
 #### Wireframe / Sketches
-- These sketches were created prior to finalizing website content.
+- This sketch was created prior to finalizing page content.
 ![Wireframe](/assets/images/readme-images/keyboard_hero_sketch.PNG)
 
 
@@ -66,14 +74,20 @@ The game offers three difficulty levels: easy, medium, and hard. Each level adds
 
 ![Keyboard Hero Static Walkthrough Page 1](/assets/images/readme-images/static_walkthrough_page_1.jpg)
 
-- 
+- Welcome message with Keyboard Hero logo and catch phrase
+- The Getting Started section, which includes a reference image and a description, explains which keys are Home Keys and how to use them in touch typing.
+- Next button takes the user to the next modal, while button positioning and content guide the user through the modal flow.
+- The modal can be closed by clicking the close icon or clicking outside of it, allowing regular users to skip the walkthrough.
 
 
 ### Static Walkthrough Modal (Page 2)
 
 ![Keyboard Hero Static Walkthrough Page 2](/assets/images/readme-images/static_walkthrough_page_2.jpg)
 
-- 
+- The description and accompanying image depict a keyboard with color-coded fingers, and the keyboard keys indicate which fingers are best utilized to type each character.
+- List of three difficulty levels, with a description of which keys are used for each level of difficulty.
+- Difficulty selection buttons allow experienced users to measure their current typing speed and accuracy based on their skills.
+- When the user selects a difficulty, the modal closes and the characters from that difficulty are loaded into the game area. The chosen difficulty button is set to active, making it simple to determine which difficulty level has been selected.
 
 
 ### Game Area
@@ -105,7 +119,8 @@ The game offers three difficulty levels: easy, medium, and hard. Each level adds
 
 ![Achievements Modal](/assets/images/readme-images/keyboard_hero_game_achievements.jpg)
 
-- 
+- Stars are displayed based on the user's correct score, providing visible feedback and encouraging them to improve their score.
+- Game results, including correct, incorrect keystrokes and characters per minute calculated and shown, motivating participants to improve their accuracy and speed.
 
 
 ## Technologies Used
@@ -138,10 +153,12 @@ The game offers three difficulty levels: easy, medium, and hard. Each level adds
 
 ### Responsive
 
-- The site is fully responsive, BUT...
+The site is fully responsive, BUT... <br>
 The primary feature of this game is touch typing, which is taught with hand placement on an external keyboard. <br>
 
-The opening of the onscreen keyboards is a challenge for mobile and tablet use cases because only input text components allow the onscreen keyboard to be displayed <br> When evaluating the mobile and tablet use cases, it became evident that the game was designed to teach touch typing techniques and improve keyboard skills.
+The opening of the onscreen keyboards is a challenge for mobile and tablet use cases because only input text components allow the onscreen keyboard to be displayed<br>
+
+When evaluating the mobile and tablet use cases, it became evident that the game was designed to teach touch typing techniques and improve keyboard skills.<br>
 
 A javascript media query has been included for screen sizes of 1024px and smaller, displaying a warning and indicating that the game is not compatible with mobile and tablet use cases unless an external keyboard is used for typing.
 

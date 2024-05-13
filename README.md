@@ -90,7 +90,7 @@ The game offers three difficulty levels: easy, medium, and hard. Each level adds
 - When the user selects a difficulty, the modal closes and the characters from that difficulty are loaded into the game area. The chosen difficulty button is set to active, making it simple to determine which difficulty level has been selected.
 
 
-### Game Area
+### Game Screen
 
 ![Keyboard Hero Game Layout Features](/assets/images/readme-images/keyboard_hero_features.webp)
 
@@ -121,6 +121,7 @@ The game offers three difficulty levels: easy, medium, and hard. Each level adds
 
 - Stars are displayed based on the user's correct score, providing visible feedback and encouraging them to improve their score.
 - Game results, including correct, incorrect keystrokes and characters per minute calculated and shown, motivating participants to improve their accuracy and speed.
+- Buttons allow you to try again or select a new difficulty. The current game difficulty does not appear in the modal.
 
 
 ## Technologies Used
@@ -133,7 +134,12 @@ The game offers three difficulty levels: easy, medium, and hard. Each level adds
 - [Google Fonts:](https://fonts.google.com/)
     Google fonts was used to import fonts to website from CSS style sheet using the CSS@import rule.
 - [Font Awesome:](https://fontawesome.com/)
-    Font Awesome was used to for social icons and bar nav icon in mobile layout using the provided script at the bottom of each page.
+    Font Awesome was used for icon sets including the below:
+    - Close icons in modals.
+    - Arrow in next button of the walkthrough modal page 1.
+    - Retry button in the achievements modal.
+    - Arrow in the display keyboard text.
+    - Warning icon in the mobile warning modal.
 - Git
     Used for version control by utilizing the terminal to commit and push any changes to GitHub.
 - [GitHub (GitHub Desktop):](https://github.com/)
@@ -147,8 +153,8 @@ The game offers three difficulty levels: easy, medium, and hard. Each level adds
 ## Testing
 
 - The site works on various browsers and has been tested on Safari, Chrome, Edge, and Firefox.
-- All links for navigation work as they should, and links to resources play the correct media on YouTube.
-- Headings, paragraphs, and navigation items are legible and easy to understand on all screen sizes.
+- All button and display elements work as intended.
+- Headings, paragraphs, and button elements are legible and easy to understand.
 
 
 ### Responsive
@@ -164,6 +170,34 @@ A javascript media query has been included for screen sizes of 1024px and smalle
 
 ![Warning Modal for 1024px and below](/assets/images/readme-images/mobile_warning.jpg)
 
+### Manual Testing
+
+1. Walkthrough Modal Page 1
+
+| Action | Expected Behavior | Result |
+| :---         |     :---:      |          ---: |
+| 1. Modal Displays | Modal walkthrough page one is displayed   |   Pass    |
+| 2. Window Click   | Modal closes and game screen is displayed with default game set to "Easy" with easy characters added to game area |   Pass    |
+| 3. Close Icon Click  |    Modal closes and game screen is displayed with default game set to "Easy" with easy characters added to game area   |   Pass    |
+| 4. Next Button Click  |   Modal walkthrough page one closes and modal page two is displayed   |   Pass    |
+
+2. Walkthrough Modal Page 2
+
+| 1. Modal Displays | Modal walkthrough page two is displayed   |   Pass    |
+| 2. Window Click   | Modal closes and game screen is displayed with default game set to "Easy" with easy characters added to game area |   Pass    |
+| 3. Close Icon Click  |    Modal closes and game screen is displayed, default game is set to "Easy" with corresponding characters added to game area. Easy button style on game screen is set to active   |   Pass    |
+| 4. Easy Button Click  |   Modal closes and game screen is displayed with game difficulty set to "Easy" and corresponding characters added to game area. Easy button style on game screen is set to active   |   Pass    |
+| 5. Medium Button Click    |   Modal closes and game screen is displayed with game difficulty set to "Medium" and corresponding characters added to game area. Medium button style on game screen is set to active |   Pass    |
+| 6. Hard Button Click    |   Modal closes and game screen is displayed with game difficulty set to "Hard" and corresponding characters added to game area. Hard button style on game screen is set to active |   Pass    |
+
+3. Game Screen
+
+| 1. Modal Displays | Modal walkthrough page two is displayed   |   Pass    |
+| 2. Window Click   | Modal closes and game screen is displayed with default game set to "Easy" with easy characters added to game area |   Pass    |
+| 3. Close Icon Click  |    Modal closes and game screen is displayed, default game is set to "Easy" with corresponding characters added to game area. Easy button style on game screen is set to active   |   Pass    |
+| 4. Easy Button Click  |   Modal closes and game screen is displayed with game difficulty set to "Easy" and corresponding characters added to game area. Easy button style on game screen is set to active   |   Pass    |
+| 5. Medium Button Click    |   Modal closes and game screen is displayed with game difficulty set to "Medium" and corresponding characters added to game area. Medium button style on game screen is set to active |   Pass    |
+| 6. Hard Button Click    |   Modal closes and game screen is displayed with game difficulty set to "Hard" and corresponding characters added to game area. Hard button style on game screen is set to active |   Pass    |
 
 
 
@@ -233,29 +267,18 @@ By forking the GitHub Repository we make a copy of the original repository on ou
 ### Content
 
 - Code
-    - The code to make the nav bar responsive was taken from the CI Love Running project.
-    - The footer code with social media icons was taken from CI Love Running project.
-    - Box shadow CSS was taken from https://getcssscan.com/css-box-shadow-examples
-
-- Home / Benefits of meditation 
-    - https://www.healthline.com/nutrition/12-benefits-of-meditation
-    - https://www.medicalnewstoday.com/articles/benefits-of-meditation
-
-- Get Started / Getting Started 
-    - https://www.mindful.org/how-to-meditate/
-
-- Get Started / Types of meditation 
-    - https://planetmeditate.com/comparing-meditation-techniques/
-    - https://liveanddare.com/types-of-meditation/
+    - Function code to increment scores, basic structure take from CI Love Mathematics projects.
+    - Basic Javascript Modal tutorial used for modals [W3S](https://www.w3schools.com/howto/howto_css_modals.asp)
+    - Stopwatch function code, snippets and logic taken from [GeeksforGeeks](https://www.geeksforgeeks.org/how-to-create-stopwatch-using-html-css-and-javascript/)
+    - Box shadow CSS was taken from https://getcssscan.com/css-box-shadow-examples.
 
 ### Media
 
-- Resources
-    - Music - https://www.youtube.com/@ParadiseTonight
-    - Videos - https://www.youtube.com/@GreatMeditation
-
 - Images 
-    - All images were taken from [Pexels](https://www.pexels.com/)
+    - Game Screen background image [Pexels](https://www.pexels.com/)
+    - Keyboard Hero logo, design by author using Affinity Designer
+    - Keyboard index image, designed by author using Affinity Designer and free vectors from [vecteezy](https://www.vecteezy.com/vector-art/6549237-vector-illustration-of-keyboard-view-suitable-for-basic-elements-of-computer-text-input-devices-smartphones-and-digital-technology-qwerty-keyboard-layout)
+    - Home Keys image, designed by author using Affinity Designer.
 
 - Icons
-    - Social & Nav icons taken from font awesome [Font awesome](https://fontawesome.com/)
+    - All icons taken from font awesome [Font awesome](https://fontawesome.com/)

@@ -16,37 +16,42 @@ The game offers three difficulty levels: easy, medium, and hard. Each level adds
 ### User Journey
 1. Static Walkthrough Modal
     - When the user enters the site, they are welcomed with a walkthrough modal and an introduction to the practice of touch typing.
-    - The user can leave the modal by clicking the close icon or clicking on the screen, and the default game level easy will load immediately, ensuring that frequent users are not compelled to go through the tour every time they visit the page.
+    - The user is given instructions for getting started with touch typing.
+    - An illustration with a description depicts the hand position and function of the Home Keys.
+    - The user can leave the modal by clicking the close icon or clicking elsewhere on the screen, and the default game level will load immediately, ensuring that frequent visitors are not forced to go through the walkthrough each time they visit the page.
     - The user is directed to the next page of the static walkthrough by a well labelled and easily accessible button. 
 
 2. Static Walkthrough Modal Page Two
-    - The static walkthrough page two displays an image of a keyboard with a color code index that corresponds to hand positioning, indicating which keys are nearest to each finger.
-    - 
+    - The static walkthrough page two shows an image of a keyboard with a color coded index corresponding to hand position, indicating which keys are closest to each finger, as well as a short description of how to locate each character.
+    - Each difficulty level is given, along with the characters assigned to each level.
+    - The player can select a preferred difficulty, and the modal will disappear, displaying the chosen difficulty characters in the gaming area.
 
-3. Resources
-    - Links to improve their experience with meditation are provided by music resources.
-    - The guided meditation technique is aided by guided video materials.
+3. Game Screen
+    - The game screen is basic, providing the user with only the necessary information, allowing for less distraction when typing.
+    - The user can adjust the difficulty, restart the current game difficulty, and display the keyboard index using clearly labelled text on the game screen.
+    - As the user is typing the characters in game area automatically changed with correct characters being displayed in green `#ccffd9`, and underlined `#2eb82e`, incorrect characters displayed in red `#ffcccc` and underlined `#ff1a1a` and the current character to be pressed underlined in blue `#0000ff`.
 
-4. Sign up
-    - The mentors help users by providing them with individualized guidance, a someone to connect with to support them on their meditation journey, and any services they may require. (The mentor's services are not associated with the website; instead, they are discussed individually with the user upon enrollment.)
-    - The form is simple to use, and the input flows in accordance with industry best practices.
+4. Achievement Screen
+    - As soon as the last character is typed, an achievement modal appears, providing feedback and rewarding the user with stars based on the number of correct keystrokes.
+    - The characters per minute are calculated and presented underneath the score results, allowing the user to assess their typing speed and set targets for improvement.
+    - The user can adjust the difficulty level or retry the current difficulty by clicking the appropriate option at the bottom of the modal.
+    - The user can close the achievement modal by clicking the close icon or the window outside of it. This will reset the game area and display the current game difficulty.
 
 ### Design
 
 #### Colors
-- The color scheme that was selected exudes tranquilly and relaxation.
-    - Primary color (#2b777c) A turquoise with a peaceful, soothing vibe.
-    - Accent color (#5f8a8d) A darker shade of primary to be used as background with white text.
-    - Accent color (#73A9AD) A lighter shade of primary to be used as background with dark text.
-    - Body Font color (#4D4D4D) Compared to complete black, dark grey is less overwhelming and causes less eye strain.
-    - Heading Font color (#2b777c) same as the primary color to draw attention to headings.
+- Font color `#445361`
+- Button color `#445361`
+- Button color hover `#88c7cc`
+- Button color active `rgb(20, 103, 109)`
+
 
 #### Fonts
 - The selected typefaces is basic and easy to read.
     - The site uses Roboto for all content and elements with sans serif as a substitute.
 
 #### Images
-- The background image is from pixabay adding depth and contrast to the game area [pixabay](https://pixabay.com/illustrations/mountains-forest-landscape-sky-6302023/)
+- The background image adds depth and contrast to the playing area, without being obtrusive or overwhelming. [pixabay](https://pixabay.com/illustrations/mountains-forest-landscape-sky-6302023/)
 <br>
 <br>
 
@@ -75,14 +80,24 @@ The game offers three difficulty levels: easy, medium, and hard. Each level adds
 
 ![Keyboard Hero Game Layout Features](/assets/images/readme-images/keyboard_hero_features.webp)
 
-- 1. Game timer
-- 2. Correct Keystroke
-- 3. Incorrect Keystroke
-- 4. Current Key
-- 5. Number of Correct Keystrokes
-- 6. Number of incorrect Keystrokes
-- 7. Display Keyboard
-- 8. Active button displaying current difficulty
+1. Game timer
+    - The timer starts on the first keystroke and stops on the last keystroke.
+    - Time is displayed in minutes and seconds
+2. Correct Keystroke
+    - When the user types the correct character, the character changes to green, indicating that the keystroke is correct.
+3. Incorrect Keystroke
+    - When the user types the incorrect character, the character changes to red, indicating that the keystroke is incorrect.
+4. Current Key
+    - The current character to be typed is underlined in blue
+5. Number of Correct Keystrokes
+    - Each correct keystroke is counted and shown as the user types.
+6. Number of incorrect Keystrokes
+    - Each incorrect keystroke is counted and shown as the user types.
+7. Display Keyboard
+    - Displays an image of a Keyboard with finger index for reference.
+    - If the keyboard image is visible, the text and arrow change to hide the keyboard with arrow up.
+8. Active button displaying current difficulty
+    - The active color of the button clearly indicates to the user which difficulty level has been selected.
 
 
 
@@ -123,15 +138,16 @@ The game offers three difficulty levels: easy, medium, and hard. Each level adds
 
 ### Responsive
 
-- The site is fully responsive, and all items and functions work on all screen sizes. It was tested using development tools in the browser.
+- The site is fully responsive, BUT...
+The primary feature of this game is touch typing, which is taught with hand placement on an external keyboard. <br>
 
-    - Tablet Resolution<br>
+The opening of the onscreen keyboards is a challenge for mobile and tablet use cases because only input text components allow the onscreen keyboard to be displayed <br> When evaluating the mobile and tablet use cases, it became evident that the game was designed to teach touch typing techniques and improve keyboard skills.
 
-    ![Tablet view homepage](/assests/images/Readme-images/Tablet-view-responsive.jpg)
+A javascript media query has been included for screen sizes of 1024px and smaller, displaying a warning and indicating that the game is not compatible with mobile and tablet use cases unless an external keyboard is used for typing.
 
-    - Mobile Resolution<br>
+![Warning Modal for 1024px and below](/assets/images/readme-images/mobile_warning.jpg)
 
-    ![Mobile view homepage](/assests/images/Readme-images/mobile-view-responsive.jpg)
+
 
 
 ### Validator Testing 
@@ -146,7 +162,7 @@ The game offers three difficulty levels: easy, medium, and hard. Each level adds
     - No errors were returned when analyzing with the official CSS Validation Service.
     - [W3C CSS Validator](https://jigsaw.w3.org/css-validator/#validate_by_input) / [Results](https://jigsaw.w3.org/css-validator/validator?uri=https%3A%2F%2Fjuanmodzelewski.github.io%2FKeyboard-Hero%2F&profile=css3svg&usermedium=all&warning=1&vextwarning=&lang=en)
 
-![w3 Validator HTML](/assests/images/Readme-images/w3c-validator-css.jpg)
+![w3 Validator HTML](/assets/images/readme-images/keyboard_hero_html_validator.jpg)
 
 3. JavaScript
 ![JShint](/assets/images/readme-images/keyboard_hero_jshint_results.jpg)

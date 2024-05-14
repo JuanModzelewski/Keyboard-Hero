@@ -29,7 +29,7 @@ The game offers three difficulty levels: easy, medium, and hard. Each level adds
 3. Game Screen
     - The game screen is basic, providing the user with only the necessary information, allowing for less distraction when typing.
     - The user can adjust the difficulty, restart the current game difficulty, and display the keyboard index using clearly labelled text on the game screen.
-    - As the user is typing the characters in game area automatically changed with correct characters being displayed in green `#ccffd9`, and underlined `#2eb82e`, incorrect characters displayed in red `#ffcccc` and underlined `#ff1a1a` and the current character to be pressed underlined in blue `#0000ff`.
+    - As the user is typing the characters in game area automatically changed with correct characters being displayed in green `#ccffd9`<a href='#'><img valign='middle' src='https://readme-swatches.vercel.app/2eb82e?style=round'/></a>, and underlined `#2eb82e`<a href='#'><img valign='middle' src='https://readme-swatches.vercel.app/ccffd9?style=round'/></a>, incorrect characters displayed in red `#ffcccc` <a href='#'><img valign='middle' src='https://readme-swatches.vercel.app/ffcccc?style=round'/></a> and underlined `#ff1a1a`<a href='#'><img valign='middle' src='https://readme-swatches.vercel.app/ff1a1a?style=round'/></a> and the current character to be pressed underlined in blue `#0000ff`<a href='#'><img valign='middle' src='https://readme-swatches.vercel.app/0000ff?style=round'/></a>.
 
 4. Achievement Screen
     - As soon as the last character is typed, an achievement modal appears, providing feedback and rewarding the user with stars based on the number of correct keystrokes.

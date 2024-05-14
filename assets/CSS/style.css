@@ -312,10 +312,7 @@ h1 {
 
   
 /* The Close Button for Modals */
-.close-achievement-modal,
-.close-walkthrough-modal,
-.close-walkthrough-modal-two,
-.close-warning-modal {
+.close-modal {
     position: fixed;
     align-self: flex-end;
     text-align: center;
@@ -325,14 +322,8 @@ h1 {
     text-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
   
-.close-achievement-modal:hover,
-.close-achievement-modal:focus,
-.close-warning-modal:hover,
-.close-warning-modal:focus,
-.close-walkthrough-modal:hover,
-.close-walkthrough-modal:focus,
-.close-walkthrough-modal-two:hover,
-.close-walkthrough-modal-two:focus {
+.close-modal:hover,
+.close-modal:focus {
     color: rgb(20, 103, 109);
     text-decoration: none;
     cursor: pointer;

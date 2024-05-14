@@ -1,17 +1,17 @@
 // global variables.
 let screenSize = window.matchMedia("(max-width: 1024px)");
 let warningModal = document.getElementById("mobile-warning");
-let closWarning = document.getElementsByClassName("close-warning-modal")[0];
+let closWarning = document.getElementById("close-warning-modal");
 
 let staticWalkthroughOne = document.getElementById("static-walkthrough-modal");
 let staticWalkthroughTwo = document.getElementById("static-walkthrough-modal-two");
-let closeModalWalkthroughOne = document.getElementsByClassName("close-walkthrough-modal")[0];
-let closeModalWalkthroughTwo = document.getElementsByClassName("close-walkthrough-modal-two")[0];
+let closeModalWalkthroughOne = document.getElementById("close-walkthrough-modal");
+let closeModalWalkthroughTwo = document.getElementById("close-walkthrough-modal-two");
 
 let nextModalButton = document.getElementById("next-step-modal");
 
 let achievementModal = document.getElementById("achievement-modal");
-let closeAchievementModal = document.getElementsByClassName("close-achievement-modal")[0];
+let closeAchievementModal = document.getElementById("close-achievement-modal");
 
 let displayKeyboard = document.getElementById("keyboard-display");
 let keyboardShow = "none";
@@ -417,23 +417,36 @@ function displayKeyboardButton(){
     displayKeyboard.blur();
 }
 
+// Assisted by mentor to build a switch case
 function hideModalButton(){
     
     let modalButtons = document.getElementsByClassName("modal-btn");
+    let modalBtn1Style, modalBtn2Style, modalBtn3Style;
 
-    if (gameIndex === "easy") {
-        modalButtons[1].style.display = "none";
-        modalButtons[2].style.display = "inline-block";
-        modalButtons[3].style.display = "inline-block";
-    } else if (gameIndex == "medium") {
-        modalButtons[1].style.display = "inline-block";
-        modalButtons[2].style.display = "none";
-         modalButtons[3].style.display = "inline-block";
-    } else if (gameIndex == "hard") {
-        modalButtons[1].style.display = "inline-block";
-        modalButtons[2].style.display = "inline-block";
-        modalButtons[3].style.display = "none";
+    switch (gameIndex) {
+        case "easy": {
+            modalBtn1Style = "none";
+            modalBtn2Style = "inline-block";
+            modalBtn3Style = "inline-block";
+            break;
+        }
+        case "medium": {
+            modalBtn1Style = "inline-block";
+            modalBtn2Style = "none";
+            modalBtn3Style = "inline-block";
+            break;
+        }
+        case "hard": {
+            modalBtn1Style = "inline-block";
+            modalBtn2Style = "inline-block";
+            modalBtn3Style = "none";
+            break;
+        }
     }
+  
+    modalButtons[1].style.display = modalBtn1Style;
+    modalButtons[2].style.display = modalBtn2Style;
+    modalButtons[3].style.display = modalBtn3Style;
     
 }
 

@@ -29,7 +29,7 @@ The game offers three difficulty levels: easy, medium, and hard. Each level adds
 3. Game Screen
     - The game screen is basic, providing the user with only the necessary information, allowing for less distraction when typing.
     - The user can adjust the difficulty, restart the current game difficulty, and display the keyboard index using clearly labelled text on the game screen.
-    - As the user is typing the characters in game area automatically changed with correct characters being displayed in green `#ccffd9`<a href='#'><img valign='middle' src='https://readme-swatches.vercel.app/2eb82e?style=round'/></a>, and underlined `#2eb82e`<a href='#'><img valign='middle' src='https://readme-swatches.vercel.app/ccffd9?style=round'/></a>, incorrect characters displayed in red `#ffcccc` <a href='#'><img valign='middle' src='https://readme-swatches.vercel.app/ffcccc?style=round'/></a> and underlined `#ff1a1a`<a href='#'><img valign='middle' src='https://readme-swatches.vercel.app/ff1a1a?style=round'/></a> and the current character to be pressed underlined in blue `#0000ff`<a href='#'><img valign='middle' src='https://readme-swatches.vercel.app/0000ff?style=round'/></a>.
+    - As the user is typing the characters in game area automatically changed with correct characters being displayed in green <a href='#'><img valign='middle' src='https://readme-swatches.vercel.app/2eb82e?style=round'/></a> `#ccffd9`, and underlined <a href='#'><img valign='middle' src='https://readme-swatches.vercel.app/ccffd9?style=round'/></a> `#2eb82e`, incorrect characters displayed in red <a href='#'><img valign='middle' src='https://readme-swatches.vercel.app/ffcccc?style=round'/></a> `#ffcccc` and underlined <a href='#'><img valign='middle' src='https://readme-swatches.vercel.app/ff1a1a?style=round'/></a> `#ff1a1a` and the current character to be pressed underlined in blue <a href='#'><img valign='middle' src='https://readme-swatches.vercel.app/0000ff?style=round'/></a> `#0000ff`.
 
 4. Achievement Screen
     - As soon as the last character is typed, an achievement modal appears, providing feedback and rewarding the user with stars based on the number of correct keystrokes.
@@ -40,15 +40,15 @@ The game offers three difficulty levels: easy, medium, and hard. Each level adds
 ### Design
 
 #### Colors
-- Font color `#445361`
-- Button color `#445361`
-- Button color hover `#88c7cc`
-- Button color active `rgb(20, 103, 109)`
-- Correct Characters `#ccffd9`
-- Correct Character bottom border `#2eb82e`
-- Incorrect characters `#ffcccc`
-- Incorrect Character bottom border `#ff1a1a`
-- Current Character Indicator bottom border `#0000ff`
+- Font color <a href='#'><img valign='middle' src='https://readme-swatches.vercel.app/445361?style=round'/></a> `#445361`
+- Button color <a href='#'><img valign='middle' src='https://readme-swatches.vercel.app/445361?style=round'/></a> `#445361`
+- Button color hover <a href='#'><img valign='middle' src='https://readme-swatches.vercel.app/88c7cc?style=round'/></a> `#88c7cc`
+- Button color active <a href='#'><img valign='middle' src='https://readme-swatches.vercel.app/14676D?style=round'/></a> `#14676D`
+- Correct Characters <a href='#'><img valign='middle' src='https://readme-swatches.vercel.app/ccffd9?style=round'/></a> `#ccffd9`
+- Correct Character bottom border <a href='#'><img valign='middle' src='https://readme-swatches.vercel.app/2eb82e?style=round'/></a> `#2eb82e`
+- Incorrect characters <a href='#'><img valign='middle' src='https://readme-swatches.vercel.app/ffcccc?style=round'/></a> `#ffcccc`
+- Incorrect Character bottom border <a href='#'><img valign='middle' src='https://readme-swatches.vercel.app/ff1a1a?style=round'/></a> `#ff1a1a`
+- Current Character Indicator bottom border <a href='#'><img valign='middle' src='https://readme-swatches.vercel.app/0000ff?style=round'/></a> `#0000ff`
 
 
 #### Fonts

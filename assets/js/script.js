@@ -33,15 +33,6 @@ document.addEventListener("DOMContentLoaded", function() {
     // Opens static walkthrough as soon as user enters page.
     staticWalkthroughOne.style.display = "block";
 
-    // RunGame and check keystrokes
-    document.addEventListener("keypress", runGame);
-
-    // Checks the length of the game and opens modal when last key has been pressed
-    document.addEventListener("keypress", checkGameLength);
-
-    // Starts game timer, timer is set to true.
-    document.addEventListener("keydown", startTimer);
-
     // Default game mode.
     displayGame("easy");
     
@@ -50,10 +41,6 @@ document.addEventListener("DOMContentLoaded", function() {
 
     // Displays a warming modal informing users that an external keyboard is require to play and learn.
     mobileWarning(screenSize);
-
-    // Prevents space-bar from scrolling when keyboard image is displayed.
-    window.addEventListener('keydown', function() {if (event.keyCode == 32) {document.body.style.overflow = "hidden";}});
-    window.addEventListener('keyup', function() {if (event.keyCode == 32) {document.body.style.overflow = "auto";}});
 
 });
 
@@ -64,6 +51,15 @@ function initEventListeners() {
     for (let button of buttons) {
         button.addEventListener("click", selectGame);
     }
+
+    // RunGame and check keystrokes
+    document.addEventListener("keypress", runGame);
+
+    // Checks the length of the game and opens modal when last key has been pressed
+    document.addEventListener("keypress", checkGameLength);
+    
+    // Starts game timer, timer is set to true.
+     document.addEventListener("keydown", startTimer);
 
     // Event listener to check if there is a change in screen size and display a warning if size is 1024px and below.
     screenSize.addEventListener("change", function(){
@@ -83,6 +79,10 @@ function initEventListeners() {
     closeModalWalkthroughOne.addEventListener("click", hideWalkthroughModal);
     closeModalWalkthroughTwo.addEventListener("click", hideWalkthroughModal);
     closeAchievementModal.addEventListener("click", hideAchievementModal);
+
+    // Prevents space-bar from scrolling when keyboard image is displayed.
+    window.addEventListener('keydown', function() {if (event.keyCode == 32) {document.body.style.overflow = "hidden";}});
+    window.addEventListener('keyup', function() {if (event.keyCode == 32) {document.body.style.overflow = "auto";}});
 }
 
 /**

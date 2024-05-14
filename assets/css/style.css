@@ -1,0 +1,513 @@
+/*Google Fonts*/
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+/*Global style */
+body {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    font-family: "Roboto", sans-serif;
+    color: #445361;
+    text-align: center;
+    align-content: center;
+    background-color: #ffffff;
+    margin: 0;
+    }
+
+.heading {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+h1 {
+    font-size: 2.5rem;
+    color: #404244;
+}
+
+
+.logo {
+    margin: auto;
+    margin-top: 1rem;
+    width: 90%;
+    max-width: 870px;
+    border-radius: 1rem;
+}
+
+
+/* Game layout */
+.timer-area {
+    text-align: right;
+    width: 85%;
+    max-width: 830px;
+    font-size: 1.5rem;
+    padding: 0.5rem 0;
+    align-self: center;
+}
+
+#game-area {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+    background-color: #ffffff;
+    box-sizing: border-box;
+    border-radius: 2rem;
+    border: #445361 solid 0.2rem;
+    width: 85%;
+    height: fit-content;
+    max-width: 830px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 2rem;
+}
+
+.characters {
+    width: 2rem;
+    height: 3rem;
+    margin: 0.75rem 0.75rem;
+    font-size: 2rem;
+    font-family: Arial, Helvetica, sans-serif;
+    color: rgb(56, 56, 56);
+    border-bottom: 0.15rem solid rgb(148, 148, 148);
+    border-radius: 0.5rem;
+    align-content: center;
+}
+
+.score-area {
+    display: flex;
+    justify-content: space-between;
+    width: 85%;
+    max-width: 830px;
+    margin: 0.5rem auto;
+    font-size: 1.5rem;
+}
+
+
+#correct, #modal-correct {
+    color: green;
+    font-weight: bold;
+
+}
+
+#incorrect, #modal-incorrect {
+    color: red;
+    font-weight: bold;
+}
+
+.scores {
+    margin: 0;
+    padding: 1rem;
+    font-size: 1.5rem;
+    
+}
+
+#keyboard-display {
+    color: rgb(56, 56, 56);
+    margin: 0;
+    font-size: 1.25rem;
+    padding: 1rem;
+}
+
+#keyboard-display:hover {
+    text-decoration: underline;
+    text-underline-offset: 0.5rem;
+}
+
+.button-container {
+    display: flex;
+    align-content: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: space-between;
+    width: 85%;
+    max-width: 830px;
+    margin: auto;
+}
+
+
+/*Button Styles*/
+.btn,
+.modal-btn {
+    display: inline-block;
+    padding: 0.5em 1.7em;
+    border: 0.16em solid rgb(255, 255, 255);
+    border-radius: 2em;
+    box-sizing: border-box;
+    text-decoration: none;
+    font-size: 1rem;
+    font-weight: 300;
+    color: #ffffff;
+    background-color: #445361;
+    text-shadow: 0 0.04em 0.04em rgba(255, 255, 255, 0.253);
+    text-align: center;
+    transition: all 0.2s;
+    width: 10rem;
+    height: 3rem;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 25px 50px -12px;
+  }
+
+.modal-btn {
+    width: fit-content;
+    height: fit-content;
+}
+
+.active {
+    color: rgb(255, 255, 255);
+    background-color: rgb(20, 103, 109);
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+}
+
+.btn:hover,
+.modal-btn:hover {
+    color: #242c33;
+    background-color:  #88c7cc;
+    font-weight: 300;
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+}
+
+.modal-btn i {
+    margin: 0 0.5rem;
+}
+
+#keyboard-image-area {
+    display: flex;
+    align-content: center;
+    margin: auto ;
+}
+
+#keyboard-image {
+    display: none;
+    max-width: 850px;
+    width: 80%;
+    margin: 2rem auto;
+}
+
+#background-image {
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    background: url("../images/site_background_image.webp") no-repeat center center / cover;
+    opacity: 0.2;
+    z-index: -1;
+
+}
+
+/* Modal Background overlay */
+.modal {
+    display: none; 
+    position: fixed;
+    z-index: 1;
+    padding-top: 100px;
+    left: 0;
+    top: 0;
+    width: 100%; 
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0,0,0);
+    background-color: rgba(0, 0, 0, 0.6);
+    
+}
+
+/*Achievement Modal Content*/
+#achievement-modal-content {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    background-color: #ffffff;
+    border-radius: 2em;
+    width: 85%;
+    height: 65vh;
+    max-height: 450px;
+    max-width: 450px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 1rem;
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 30px 90px;
+}
+
+#star-content {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    width: 100%;
+    height: 5rem;
+    margin-top: 2rem;
+}
+
+#star-one,
+#star-two,
+#star-three {
+    height: 4.5rem;
+    width: 4.5rem;
+    font-size: 4.5rem;
+    text-align: center;
+    margin: 0 0.75rem;
+    color: #dfdfdf;
+    -webkit-text-stroke: 1px #ffffff;
+    text-shadow: rgba(0, 0, 0, 0.15) 0px 15px 25px, rgba(0, 0, 0, 0.05) 0px 5px 10px;
+}
+
+#star-two {
+    position: relative;
+    top: -30%;
+}
+
+#score-container {
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+    justify-content: center;
+    width: 80%;
+}
+
+#score-modal h2 {
+    font-size: 2rem;
+    margin-top: 1rem;
+    margin-bottom: 0.5rem;
+
+}
+
+.modal-scores {
+    font-size: 1.5rem;
+    margin: 0.5rem 0.5rem;
+}
+
+#modal-cpm {
+    color: blue;
+    font-weight: bold;
+}
+
+#modal-button-container h3 {
+    font-size: 1rem;
+    margin: 0.5rem auto;
+}
+
+#modal-button-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-self: center;
+    margin-top: 1.5rem;
+}
+
+#modal-button-container > div {
+    display: flex;
+    flex-direction: column;
+}
+
+#change-difficulty {
+    background-color: #88c7cc36;
+    border-radius: 1rem;
+    padding: 0.5rem 1rem;
+}
+
+#retry-current-game {
+    justify-content: center;
+    margin-right: 1rem;
+}
+
+  
+/* The Close Button for Modals */
+.close-modal {
+    position: fixed;
+    align-self: flex-end;
+    text-align: center;
+    color: #797979;
+    font-size: 1.75rem;
+    font-weight: bold;
+    text-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+  
+.close-modal:hover,
+.close-modal:focus {
+    color: rgb(20, 103, 109);
+    text-decoration: none;
+    cursor: pointer;
+}
+
+
+/*Walkthrough Modal Page One Content*/
+#static-walkthrough-content {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    background-color: #ffffff;
+    border-radius: 1rem;
+    width: 85%;
+    height: 65vh;
+    max-height: 620px;
+    max-width: 650px;
+    padding: 0.5rem;
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 30px 90px;
+    margin: auto auto;
+    overflow: auto;
+}
+
+#static-walkthrough-modal h2 {
+    font-size: 2rem;
+    margin-top: 1rem;
+    margin-bottom: 0.75rem;
+}
+
+#modal-instructions h3 {
+    font-size: 1.5rem;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 2px solid #445361;
+}
+
+#modal-instructions {
+    display: flex;
+    align-self: center;
+    flex-direction: column;
+    width: 90%;
+    height: fit-content;
+    background-color: #ececec;
+    padding: 1rem;
+    border-radius: 1rem;
+}
+
+#modal-instructions p {
+    text-align: left;
+    font-size: 1rem;
+    line-height: 1.5rem;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.modal-logo {
+    width: 550px;
+    max-width: 100%;
+    align-self: center;
+}
+
+.modal-home-keys {
+    width: 450px;
+    max-width: 100%;
+    margin: 1rem 0;
+    border-radius: 1rem;
+}
+
+#next-step-modal {
+    align-self: flex-end;
+}
+
+.hidden {
+    display: none;
+}
+
+
+/*Walkthrough Modal Page Two*/
+#static-walkthrough-two-content {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    background-color: #ffffff;
+    border-radius: 1rem;
+    width: 85%;
+    height: 65vh;
+    max-height: 740px;
+    max-width: 650px;
+    padding: 0.5rem;
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 30px 90px;
+    margin: auto auto;
+    overflow: auto;
+}
+
+.modal-keyboard-layout {
+    margin: 1rem 0;
+}
+
+#modal-two-instructions {
+    display: flex;
+    align-self: center;
+    flex-direction: column;
+    width: 90%;
+    height: fit-content;
+    padding: 1rem;
+    border-radius: 1rem;
+}
+
+#modal-two-instructions p {
+    text-align: left;
+    font-size: 1rem;
+    line-height: 1.5rem;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+#modal-difficulty-selection {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    align-self: center;
+    border-radius: 1rem;
+    width: 80%;
+    margin: auto;
+    padding: 1rem;
+    background-color: #88c7cc36;
+}
+
+#modal-difficulty-selection > div {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+}
+
+#modal-difficulty-selection p {
+    text-align: center;
+    font-size: 1rem;
+    margin: 0 auto;
+    margin-bottom: 1rem;
+}
+
+
+/*mobile warning modal*/
+#mobile-warning-content {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    background-color: #ffffff;
+    border-radius: 1rem;
+    width: 85%;
+    height: 65vh;
+    max-height: 500px;
+    max-width: 500px;
+    padding: 0.5rem;
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 30px 90px;
+    margin: auto auto;
+    overflow: auto;
+}
+
+#warning-icon {
+    align-content: center;
+    align-self: center;
+    width: 80%;
+    height: fit-content;
+    font-size: 6rem;
+    color: #d46300;
+    margin-top: 2rem;
+    text-shadow: rgba(0, 0, 0, 0.15) 0px 15px 25px, rgba(0, 0, 0, 0.05) 0px 5px 10px;
+}
+
+#warning-icon h3 {
+    font-size: 2rem;
+    align-self: center;
+    margin: 0 auto;
+
+}
+
+#mobile-warning-content p {
+    font-size: 1rem;
+    align-self: center;
+    width: 70%;
+    line-height: 1.5rem;
+    margin-top: 1.5rem;
+
+}

@@ -162,7 +162,7 @@ The game offers three difficulty levels: easy, medium, and hard. Each level adds
 The site is fully responsive, BUT... <br>
 The primary feature of this game is touch typing, which is taught with hand placement on an external keyboard. <br>
 
-The opening of the onscreen keyboards is a challenge for mobile and tablet use cases because only input text components allow the onscreen keyboard to be displayed<br>
+The opening of the onscreen keyboard is a challenge for mobile and tablet use cases as only input text components allow the onscreen keyboard to be displayed<br>
 
 When evaluating the mobile and tablet use cases, it became evident that the game was designed to teach touch typing techniques and improve keyboard skills.<br>
 
@@ -177,9 +177,9 @@ A javascript media query has been included for screen sizes of 1024px and smalle
 | Action | Expected Behavior | Result |
 | :---         |     :---:      |          ---: |
 | 1. Modal Displays | Modal walkthrough page one is displayed | Pass |
-| 2. Window Click | Modal closes and game screen is displayed, the default game set to "Easy" with corresponding characters added to game area | Pass |
+| 2. Window Click | Modal closes and game screen is displayed, the default game is set to "Easy" with corresponding characters added to game area | Pass |
 | 3. Close Icon Click | Modal closes and game screen is displayed, the default game is set to "Easy" with corresponding characters added to game area | Pass |
-| 4. Next Button Click | Modal walkthrough page one closes and modal page two is displayed | Pass |
+| 4. Next Button Click | Modal walkthrough page one closes and walkthrough modal page two is displayed | Pass |
 
 2. Walkthrough Modal Page 2
 
@@ -196,28 +196,28 @@ A javascript media query has been included for screen sizes of 1024px and smalle
 
 | Action | Expected Behavior | Result |
 | :---         |     :---:      |          ---: |
-| 1. Correct Characters displayed | The correct characters are added to the Game Area when difficulty levels are selected or changed | Pass |
+| 1. Correct Characters displayed | The correct characters are added to the Game Area when difficulty level is selected or changed | Pass |
 | 2. Key Press event | When a keystroke occurs the game checks the character displayed in the Game Area to the value of the keystroke | Pass |
 | 3. Timer Starts | When the first keystroke event takes place the timer starts | Pass |
-| 4. Correct Key pressed | If the value of the Keystroke is equal to the value of the corresponding character in the game area, the character in the game area is highlight in green and the correct score is incremented | Pass |
-| 5. Incorrect Key pressed | If the value of the Key pressed is not equal to the value of the corresponding character in the game area, the character in the game area is highlight in red and the incorrect score is incremented | Pass |
-| 6. Current Character indicator | After each Key Press the next character to be pressed is underlined in blue | Pass |
+| 4. Correct Key pressed | If the value of the keystroke is equal to the value of the corresponding character in the game area, the character in the game area is highlight in green and the correct score is incremented | Pass |
+| 5. Incorrect Key pressed | If the value of the keystroke is not equal to the value of the corresponding character in the game area, the character in the game area is highlight in red and the incorrect score is incremented | Pass |
+| 6. Current Character indicator | After each keystroke the next character to be pressed is underlined in blue | Pass |
 | 7. Difficulty Buttons | Clicking on a difficulty level changes the characters that are displayed in the game area | Pass |
 | 9. Restart Button | When the restart button is clicked the game area, scores and timer is reset with new characters from current difficulty loaded into the game area | Pass |
-| 10. Game Complete | When the last character from game area has been pressed the achievement modal is displayed | Pass |
-| 11. Timer stops | When the last keystroke from game area has taken place the timer is stopped | Pass |
+| 10. Game Complete | When the last character in the game area has been pressed the achievement modal is displayed | Pass |
+| 11. Timer stops | When the last character in the game area has been pressed the timer is stopped | Pass |
 
 4. Achievement Modal
 
 | Action | Expected Behavior | Result |
 | :---         |     :---:      |          ---: |
 | 1. Correct number of stars displayed | If correct answers > 42 three stars are displayed, if correct answers >= 35 two stars are displayed, if correct answers >= 25 one star is displayed, if correct answer <= 24 no stars are displayed | Pass |
-| 2. Correct answers displayed | The right number of correct and incorrect answers are displayed in achievement modal | Pass |
-| 3. Calculated characters per minute | The correct calculated characters per minute is displayed | Pass |
-| 4. Retry Button | Loads a new game for currently selected difficulty | Pass |
-| 5. Change Difficulty Buttons | If a new difficulty is selected the chosen difficulty's game characters will load into the game area and the selected game difficulty button will become active on the home screen | Pass |
-| 6. Window Click | Clicking on the window outside the achievement modal will close the modal and load a new game with current game difficulty | Pass |
-| 7. Close Icon | Clicking on the close icon will close the achievement modal and load a new game with current game difficulty | Pass |
+| 2. Correct Scores | The right number of correct and incorrect answers are displayed in achievement modal | Pass |
+| 3. Calculated characters per minute | The correct calculations for characters per minute are displayed | Pass |
+| 4. Retry Button | Loads a new game with currently selected difficulty | Pass |
+| 5. Change Difficulty Buttons | If a new difficulty is selected the chosen difficulty's game characters will load into the game area and the selected game difficulty button will become active on the game screen | Pass |
+| 6. Window Click | Clicking on the window outside the achievement modal will close the modal and load a new game with current game difficulty level | Pass |
+| 7. Close Icon | Clicking on the close icon will close the achievement modal and load a new game with current game difficulty level | Pass |
 
 
 ### Validator Testing 
@@ -287,9 +287,11 @@ By forking the GitHub Repository we make a copy of the original repository on ou
 
 - Code
     - Function code to increment scores, basic structure take from CI Love Mathematics projects.
+    - Simplify increment score JavaScript function with scoreNodeID and logic, thanks to my mentor.
     - Basic Javascript Modal tutorial used for modals [W3S](https://www.w3schools.com/howto/howto_css_modals.asp)
     - Stopwatch function code, snippets and logic taken from [GeeksforGeeks](https://www.geeksforgeeks.org/how-to-create-stopwatch-using-html-css-and-javascript/)
     - Box shadow CSS was taken from https://getcssscan.com/css-box-shadow-examples.
+    - Method to create cleaner javaScript code, thanks to my mentor for assisting me 
 
 ### Media
 

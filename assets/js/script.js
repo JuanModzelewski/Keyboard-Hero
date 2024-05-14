@@ -37,7 +37,7 @@ document.addEventListener("DOMContentLoaded", function() {
     document.addEventListener("keypress", runGame);
 
     // Checks the length of the game and opens modal when last key has been pressed
-    document.addEventListener("keypress", checkGameLength)
+    document.addEventListener("keypress", checkGameLength);
 
     // Starts game timer, timer is set to true.
     document.addEventListener("keydown", startTimer);
@@ -235,6 +235,7 @@ function incrementWrongScore(){
 }
 
 // updates score to index.html id for each value.
+// guidance from mentor to simplify code, by introducing scoreNodeId and logic
 function updateScore(scoreNodeId, isCorrect){
     let oldScore = parseInt(document.getElementById(scoreNodeId).innerText);
 

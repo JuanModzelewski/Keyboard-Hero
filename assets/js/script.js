@@ -36,6 +36,9 @@ document.addEventListener("DOMContentLoaded", function() {
     // RunGame and check keystrokes
     document.addEventListener("keypress", runGame);
 
+    // Checks the length of the game and opens modal when last key has been pressed
+    document.addEventListener("keypress", checkGameLength)
+
     // Starts game timer, timer is set to true.
     document.addEventListener("keydown", startTimer);
 
@@ -51,6 +54,7 @@ document.addEventListener("DOMContentLoaded", function() {
     // Prevents space-bar from scrolling when keyboard image is displayed.
     window.addEventListener('keydown', function() {if (event.keyCode == 32) {document.body.style.overflow = "hidden";}});
     window.addEventListener('keyup', function() {if (event.keyCode == 32) {document.body.style.overflow = "auto";}});
+
 });
 
 function initEventListeners() {
@@ -67,7 +71,7 @@ function initEventListeners() {
     });
 
     // Display keyboard image with color coded keys and finger placement.
-     displayKeyboard.addEventListener("click", displayKeyboardButton);
+    displayKeyboard.addEventListener("click", displayKeyboardButton);
 
     // Closes modals when the window is click outside modal content.
     window.addEventListener("click", onWindowClick);
@@ -89,17 +93,7 @@ function initEventListeners() {
 function runGame(event){
     
     let keyElements = document.getElementsByClassName("characters");
-
-    if (keyIndex === (keyElements.length - 1)){
-        timer = false;
-        achievementModal.style.display = "block";
-        displayScoreStars();
-        displayModalScores();
-        charactersPerMin();
-        hideModalButton();
-        onWindowClick();
-    }
-
+    
     if (keyIndex < keyElements.length){
         
         if (event.key === keyValue(keyIndex)) {
@@ -110,7 +104,24 @@ function runGame(event){
             keyIndex++;
         }
 
+        checkGameLength();
+
         keyElements[keyIndex].style.borderColor = "#0000ff";
+    }
+}
+
+// Check game length and opens achievements modal on last keystroke.
+function checkGameLength (){
+    let keyElements = document.getElementsByClassName("characters");
+
+    if (keyIndex === (keyElements.length)){
+        achievementModal.style.display = "block";
+        timer = false;
+        displayModalScores();
+        displayScoreStars();
+        charactersPerMin();
+        hideModalButton();
+        onWindowClick();        
     }
 }
 
@@ -265,7 +276,7 @@ function displayScoreStars(){
 // Displays score for correct and incorrect answers in modal.
 function displayModalScores(){
     let correctAnswers = document.getElementById("correct").innerText;
-    let incorrectAnswers = document.getElementById("incorrect").innerText; 
+    let incorrectAnswers = document.getElementById("incorrect").innerText;
 
     document.getElementById("modal-correct").innerText = correctAnswers;
     document.getElementById("modal-incorrect").innerText = incorrectAnswers;

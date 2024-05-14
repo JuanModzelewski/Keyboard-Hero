@@ -176,33 +176,48 @@ A javascript media query has been included for screen sizes of 1024px and smalle
 
 | Action | Expected Behavior | Result |
 | :---         |     :---:      |          ---: |
-| 1. Modal Displays | Modal walkthrough page one is displayed   |   Pass    |
-| 2. Window Click   | Modal closes and game screen is displayed with default game set to "Easy" with easy characters added to game area |   Pass    |
-| 3. Close Icon Click  |    Modal closes and game screen is displayed with default game set to "Easy" with easy characters added to game area   |   Pass    |
-| 4. Next Button Click  |   Modal walkthrough page one closes and modal page two is displayed   |   Pass    |
+| 1. Modal Displays | Modal walkthrough page one is displayed | Pass |
+| 2. Window Click | Modal closes and game screen is displayed, the default game set to "Easy" with corresponding characters added to game area | Pass |
+| 3. Close Icon Click | Modal closes and game screen is displayed, the default game is set to "Easy" with corresponding characters added to game area | Pass |
+| 4. Next Button Click | Modal walkthrough page one closes and modal page two is displayed | Pass |
 
 2. Walkthrough Modal Page 2
 
 | Action | Expected Behavior | Result |
 | :---         |     :---:      |          ---: |
-| 1. Modal Displays | Modal walkthrough page two is displayed   |   Pass    |
-| 2. Window Click   | Modal closes and game screen is displayed with default game set to "Easy" with easy characters added to game area |   Pass    |
-| 3. Close Icon Click  |    Modal closes and game screen is displayed, default game is set to "Easy" with corresponding characters added to game area. Easy button style on game screen is set to active   |   Pass    |
-| 4. Easy Button Click  |   Modal closes and game screen is displayed with game difficulty set to "Easy" and corresponding characters added to game area. Easy button style on game screen is set to active   |   Pass    |
-| 5. Medium Button Click    |   Modal closes and game screen is displayed with game difficulty set to "Medium" and corresponding characters added to game area. Medium button style on game screen is set to active |   Pass    |
-| 6. Hard Button Click    |   Modal closes and game screen is displayed with game difficulty set to "Hard" and corresponding characters added to game area. Hard button style on game screen is set to active |   Pass    |
+| 1. Modal Displays | Modal walkthrough page two is displayed | Pass |
+| 2. Window Click | Modal closes and game screen is displayed, the default game is set to "Easy" with corresponding characters added to game area | Pass |
+| 3. Close Icon Click | Modal closes and game screen is displayed, the default game is set to "Easy" with corresponding characters added to game area. Easy button style on game screen is set to active | Pass |
+| 4. Easy Button Click | Modal closes and game screen is displayed, the game difficulty is set to "Easy" and corresponding characters added to game area. Easy button style on game screen is set to active | Pass |
+| 5. Medium Button Click | Modal closes and game screen is displayed, the game difficulty is set to "Medium" and corresponding characters added to game area. Medium button style on game screen is set to active | Pass |
+| 6. Hard Button Click | Modal closes and game screen is displayed, the game difficulty is set to "Hard" and corresponding characters added to game area. Hard button style on game screen is set to active | Pass |
 
 3. Game Screen
 
 | Action | Expected Behavior | Result |
 | :---         |     :---:      |          ---: |
-| 1. Correct Characters displayed | Selecting various difficulty levels on Game Screen and modals change the characters that are displayed in the Game Area  |   Pass    |
-| 2. Key Press event   | When a keystroke occurs the game checks the first value in the Game Area to the value of the keystroke |   Pass    |
-| 3. Timer Starts  |    When the first keystroke event takes place the timer starts   |   Pass    |
-| 4. Correct Key pressed  |   If the value of the Key pressed is equal to the value of the corresponding character in the game area, the character in the game area is highlight in green and the correct score is incremented   |   Pass    |
-| 5. Incorrect Key pressed  |   If the value of the Key pressed is not equal to the value of the corresponding character in the game area, the character in the game area is highlight in red and the incorrect score is incremented   |   Pass    |
-| 6. Current Character indicator    |   After each Key Press the next character to be pressed is underlined in blue |   Pass    |
+| 1. Correct Characters displayed | The correct characters are added to the Game Area when difficulty levels are selected or changed | Pass |
+| 2. Key Press event | When a keystroke occurs the game checks the character displayed in the Game Area to the value of the keystroke | Pass |
+| 3. Timer Starts | When the first keystroke event takes place the timer starts | Pass |
+| 4. Correct Key pressed | If the value of the Keystroke is equal to the value of the corresponding character in the game area, the character in the game area is highlight in green and the correct score is incremented | Pass |
+| 5. Incorrect Key pressed | If the value of the Key pressed is not equal to the value of the corresponding character in the game area, the character in the game area is highlight in red and the incorrect score is incremented | Pass |
+| 6. Current Character indicator | After each Key Press the next character to be pressed is underlined in blue | Pass |
+| 7. Difficulty Buttons | Clicking on a difficulty level changes the characters that are displayed in the game area | Pass |
+| 9. Restart Button | When the restart button is clicked the game area, scores and timer is reset with new characters from current difficulty loaded into the game area | Pass |
+| 10. Game Complete | When the last character from game area has been pressed the achievement modal is displayed | Pass |
+| 11. Timer stops | When the last keystroke from game area has taken place the timer is stopped | Pass |
 
+4. Achievement Modal
+
+| Action | Expected Behavior | Result |
+| :---         |     :---:      |          ---: |
+| 1. Correct number of stars displayed | If correct answers > 42 three stars are displayed, if correct answers >= 35 two stars are displayed, if correct answers >= 25 one star is displayed, if correct answer <= 24 no stars are displayed | Pass |
+| 2. Correct answers displayed | The right number of correct and incorrect answers are displayed in achievement modal | Pass |
+| 3. Calculated characters per minute | The correct calculated characters per minute is displayed | Pass |
+| 4. Retry Button | Loads a new game for currently selected difficulty | Pass |
+| 5. Change Difficulty Buttons | If a new difficulty is selected the chosen difficulty's game characters will load into the game area and the selected game difficulty button will become active on the home screen | Pass |
+| 6. Window Click | Clicking on the window outside the achievement modal will close the modal and load a new game with current game difficulty | Pass |
+| 7. Close Icon | Clicking on the close icon will close the achievement modal and load a new game with current game difficulty | Pass |
 
 
 ### Validator Testing 
@@ -264,7 +279,7 @@ By forking the GitHub Repository we make a copy of the original repository on ou
 7. Press Enter. Your local clone will be created.
 8. Click [Here](https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository#cloning-a-repository-to-github-desktop) to retrieve pictures for some of the buttons and more detailed explanations of the above process.
 
-- The live link is [Clarity](https://juanmodzelewski.github.io/Clarity/)
+- The live link is [KeyBoard Hero](https://juanmodzelewski.github.io/Keyboard-Hero/)
 
 ## Credits
 
@@ -279,7 +294,7 @@ By forking the GitHub Repository we make a copy of the original repository on ou
 ### Media
 
 - Images 
-    - Game Screen background image [Pexels](https://www.pexels.com/)
+    - Game Screen background image [pixabay](https://pixabay.com/)
     - Keyboard Hero logo, design by author using Affinity Designer
     - Keyboard index image, designed by author using Affinity Designer and free vectors from [vecteezy](https://www.vecteezy.com/vector-art/6549237-vector-illustration-of-keyboard-view-suitable-for-basic-elements-of-computer-text-input-devices-smartphones-and-digital-technology-qwerty-keyboard-layout)
     - Home Keys image, designed by author using Affinity Designer.

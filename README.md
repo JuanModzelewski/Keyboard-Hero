@@ -286,12 +286,13 @@ By forking the GitHub Repository we make a copy of the original repository on ou
 ### Content
 
 - Code
-    - Function code to increment scores, basic structure take from CI Love Mathematics projects.
-    - Simplify increment score JavaScript function with scoreNodeID and logic, thanks to my mentor.
+    - Function code to increment scores, basic structure taken from CI Love Mathematics projects.
+    - Simplifying increment score JavaScript function by using scoreNodeID and logic, tips and reasoning thanks to my mentor.
+    - Creating switch cases in JavaScript functions for button change cases, tips and reasoning provided by mentor.
     - Basic Javascript Modal tutorial used for modals [W3S](https://www.w3schools.com/howto/howto_css_modals.asp)
-    - Stopwatch function code, snippets and logic taken from [GeeksforGeeks](https://www.geeksforgeeks.org/how-to-create-stopwatch-using-html-css-and-javascript/)
+    - Stopwatch function code, snippets and logic taken from [JavaCodePoint](https://javacodepoint.com/how-to-create-a-stopwatch-in-javascript/)
     - Box shadow CSS was taken from https://getcssscan.com/css-box-shadow-examples.
-    - Method to create cleaner javaScript code, thanks to my mentor for assisting me 
+    - Methods and good practices to develope cleaner javaScript code, thanks to my mentor for assisting me.
 
 ### Media
 

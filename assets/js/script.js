@@ -19,6 +19,7 @@ let keyboardShow = "none";
 let keyIndex = 0;
 let gameIndex = "";
 
+let gameSession = null;
 let timer = "";
 let min = 0;
 let sec = 0;
@@ -30,21 +31,12 @@ document.addEventListener("DOMContentLoaded", function() {
 
     initEventListeners();
 
-    // Opens static walkthrough as soon as user enters page.
-    staticWalkthroughOne.style.display = "block";
-
-    // Default game mode.
-    displayGame("easy");
-    
-    // Sets button to active for whichever game is being displayed.
-    currentGame();
-
-    // Displays a warming modal informing users that an external keyboard is require to play and learn.
-    mobileWarning(screenSize);
-
 });
 
 function initEventListeners() {
+
+    // Opens static walkthrough as soon as user enters page.
+    staticWalkthroughOne.style.display = "block";
 
     // Main button event listener checking which game has been selected and using its data-type to load requested difficulty or restart game.
     let buttons = document.getElementsByTagName("button");
@@ -52,14 +44,26 @@ function initEventListeners() {
         button.addEventListener("click", selectGame);
     }
 
+    // Sets button to active for whichever game is being displayed.
+    currentGame();
+
+    // Default game mode.
+    displayGame("easy");
+
     // RunGame and check keystrokes
     document.addEventListener("keypress", runGame);
 
     // Checks the length of the game and opens modal when last key has been pressed
     document.addEventListener("keypress", checkGameLength);
-    
+
     // Starts game timer, timer is set to true.
-     document.addEventListener("keydown", startTimer);
+    document.addEventListener("keypress", startTimer);
+
+    // Holds the game timer to start game timer on keypress
+    startTimer();
+
+    // Displays a warming modal informing users that an external keyboard is require to play and learn.
+    mobileWarning(screenSize);
 
     // Event listener to check if there is a change in screen size and display a warning if size is 1024px and below.
     screenSize.addEventListener("change", function(){
@@ -116,7 +120,7 @@ function checkGameLength (){
 
     if (keyIndex === (keyElements.length)){
         achievementModal.style.display = "block";
-        timer = false;
+        clearTimeout(gameSession);
         displayModalScores();
         displayScoreStars();
         charactersPerMin();
@@ -299,10 +303,10 @@ function resetGame(){
     let starTwo = document.getElementById("star-two");
     let starThree = document.getElementById("star-three");
 
-    timer = false;
     keyIndex = 0;
     min = 0;
     sec = 0;
+    clearTimeout(gameSession);
     document.getElementById('min').innerHTML = "00"; 
     document.getElementById('sec').innerHTML = "00";
     document.getElementById("modal-cpm").innerText = "00";
@@ -319,31 +323,44 @@ function resetGame(){
 
 /**
  * Changes button class based on game difficulty.
- * Ensures current selected game button is always active. 
+ * Ensures current selected game button is always active.
+ * Assisted by mentor to build a switch case, with reasoning and basic logic.
  */
 function currentGame(){
     let currentGame = document.getElementsByClassName("btn");
+    let easyButton = currentGame[0], mediumButton = currentGame[1], hardButton = currentGame[2];
 
-    if (gameIndex === "easy") {               
-        currentGame[0].classList.add("active");
-        currentGame[1].classList.remove("active");
-        currentGame[2].classList.remove("active");
-    } else if (gameIndex === "medium") {
-        currentGame[1].classList.add("active");
-        currentGame[0].classList.remove("active");
-        currentGame[2].classList.remove("active");
-    } else if (gameIndex === "hard") {
-        currentGame[2].classList.add("active");
-        currentGame[0].classList.remove("active");
-        currentGame[1].classList.remove("active");
+    switch (gameIndex) {   
+        case "easy" : {            
+            easyButton.classList.add("active");
+            mediumButton.classList.remove("active");
+            hardButton.classList.remove("active");
+        break;
+        }
+        case "medium" : {
+            easyButton.classList.remove("active");
+            mediumButton.classList.add("active");
+            hardButton.classList.remove("active");
+            break;
+        }
+        case "hard" : {
+            easyButton.classList.remove("active");
+            mediumButton.classList.remove("active");
+            hardButton.classList.add("active");
+            break;
+        }
     }
 }
 
 // Function to hold timer values.
-// Code snippets taken from https://www.geeksforgeeks.org/how-to-create-stopwatch-using-html-css-and-javascript/
-function gameTimer(){
-    if (timer) { 
-        sec++; 
+// Code snippets taken from https://javacodepoint.com/how-to-create-a-stopwatch-in-javascript/
+function gameTimer(timer){
+
+    if (timer) {
+    }
+    gameSession = setTimeout(function(){
+
+        sec++;
   
         if (sec == 60) { 
             min++; 
@@ -364,15 +381,14 @@ function gameTimer(){
         document.getElementById('min').innerText = minutes; 
         document.getElementById('sec').innerText = seconds; 
 
-        setTimeout(gameTimer, 1000); 
-    } 
+        gameTimer();
+
+    }, 1000);
 }
 
-// Starts timer
 function startTimer(){
-    if (keyIndex === 0){
-        timer = true;
-        gameTimer();
+    if (keyIndex === 1) {
+    gameTimer(true);
     }
 }
 
@@ -402,7 +418,7 @@ function hideKeyboard(){
     keyboardImage.style.display = "none";
 }
 
-// Display keyboard image with color coded keys and finger placement
+// Display keyboard image with color coded keys and finger placement.
 function displayKeyboardButton(){
     if (keyboardShow === "none") {
         showKeyboard();
@@ -417,7 +433,7 @@ function displayKeyboardButton(){
     displayKeyboard.blur();
 }
 
-// Assisted by mentor to build a switch case
+// Assisted by mentor to build a switch case, with reasoning and basic logic.
 function hideModalButton(){
     
     let modalButtons = document.getElementsByClassName("modal-btn");
@@ -469,7 +485,7 @@ function onNextBtnClick(){
     staticWalkthroughTwo.style.display = "block";
 }
 
-// Tutorial taken from W3S
+// Tutorial used from W3S https://www.w3schools.com/howto/howto_css_modals.asp
 function mobileWarning(screenSize){
     if (screenSize.matches) {
         warningModal.style.display = "block";
